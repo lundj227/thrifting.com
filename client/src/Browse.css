@@ -6,11 +6,9 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
   }
-
-
-
-.selection-container {
-    max-width: 1200px;
+  
+  .selection-container {
+    max-width: 1225px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f4f1ee;
@@ -21,17 +19,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
     position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
-    background-color: #fff; 
+    background-color: #F3EEEA; 
     z-index: 1000; 
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
     padding: 0 20px; 
   }
-  
   
   .header h1 {
     font-size: 2em;
@@ -40,7 +36,7 @@ body {
   
   .search-container {
     display: flex;
-    margin-left: 1200px;
+    /* Removed fixed margin-left */
   }
   
   .search-input {
@@ -71,45 +67,112 @@ body {
     margin-left: 10px;
   }
   
-  .main-content h2 {
-    text-align: center;
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 20px;
-    padding-top: 120px;
-  }
+
+
   
   .new-arrivals {
-    padding-top: 15%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 300px; 
+    grid-gap: 200px; /* Adjusted for more reasonable spacing */
     justify-content: center; 
+    padding-top: 20px; /* Adjusted padding-top */
   }
-  
-  
   
   .new-arrival-item {
     background-color: #fff;
     border-radius: 8px;
     height: 200px;
     width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .new-arrival-item:hover {
+    transform: scale(1.25); 
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   }
   
   @media (max-width: 768px) {
     .header, .search-container, .user-controls {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center; /* Center align the flex items */
     }
   
     .search-container, .user-controls {
       width: 100%;
       margin-top: 10px;
+      order: 2; /* Push search and user controls below the title on small screens */
+    }
+  
+    .header h1 {
+      order: 1; /* Ensure title comes first on small screens */
     }
   
     .new-arrivals {
       grid-template-columns: 1fr;
+      grid-gap: 20px; /* Adjusted for vertical spacing on small screens */
+      padding-top: 0; /* Remove additional top padding on small screens */
+    }
+  
+    .new-arrival-item {
+      width: 100%; /* Make items full width on small screens */
+      height: auto; /* Adjust height to maintain aspect ratio or as needed */
+    }
+  
+    .main-content h2 {
+      padding-top: 150px; /* Increase padding-top to account for the stacked header */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Adjustments for tablet and large phones */
+  
+    /* ... */
+  }
+  
+  @media (max-width: 480px) {
+    /* Adjustments for small phones */
+    
+    .header, .search-container, .user-controls {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .search-container {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .search-input, .search-button {
+      width: 90%; /* Full width with a little margin */
+      margin: 10px 0; /* Add some vertical spacing */
+    }
+  
+    .user-controls {
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .user-button {
+      font-size: 1.2em; /* Adjust the size if necessary */
+      margin: 5px; /* Add some spacing around buttons */
+    }
+  
+    .main-content h2 {
+      padding-top: 130px; /* Increase top padding to account for the fixed header */
+      margin-bottom: 30px; /* Adjust the bottom margin */
+    }
+  
+    .new-arrivals {
+      grid-template-columns: 1fr; /* Stack the items in a single column */
+      grid-gap: 20px; /* Adjust the gap for smaller screens */
+    }
+  
+    .new-arrival-item {
+      /* Adjust size as needed for mobile */
+      width: calc(100% - 40px); /* Full width minus padding */
+      height: auto; /* Adjust height to maintain aspect ratio */
     }
   }
   

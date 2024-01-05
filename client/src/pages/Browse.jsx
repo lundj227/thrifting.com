@@ -19,6 +19,7 @@ function Selection() {
       
       {/* Main Content */}
       <div className="main-content">
+        <h1>New Thrift</h1>
         <div className="new-arrivals">
           <div className="new-arrival-item"></div>
           <div className="new-arrival-item"></div>
