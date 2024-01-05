@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Signup.css';
 
 function SignUpForm() {
   // State for form fields
@@ -26,11 +27,12 @@ function SignUpForm() {
 
   return (
     <div>
-      <h2>Sign Up</h2>
+      <h2>Create Account</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username"></label>
           <input
+            placeholder="Username"
             type="text"
             id="username"
             name="username"
@@ -40,8 +42,9 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email"></label>
           <input
+            placeholder="Email"
             type="email"
             id="email"
             name="email"
@@ -51,20 +54,22 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password"></label>
           <input
             type="password"
             id="password"
             name="password"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" id="signUp-btn">Sign Up</button>
       </form>
     </div>
   );
+  
 }
 
 export default SignUpForm;
