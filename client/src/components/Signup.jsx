@@ -27,11 +27,12 @@ function SignUpForm() {
 
   return (
     <div>
-      <h2>Create Account</h2>
+      <h2 class="createAccount">Create Account</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username"></label>
           <input
+          className="centered-input"
             placeholder="Username"
             type="text"
             id="username"
@@ -44,6 +45,7 @@ function SignUpForm() {
         <div>
           <label htmlFor="email"></label>
           <input
+          className="centered-input"
             placeholder="Email"
             type="email"
             id="email"
@@ -56,6 +58,7 @@ function SignUpForm() {
         <div>
           <label htmlFor="password"></label>
           <input
+          className="centered-input"
             type="password"
             id="password"
             name="password"
@@ -65,7 +68,7 @@ function SignUpForm() {
             required
           />
         </div>
-        <button type="submit" id="signUp-btn">Sign Up</button>
+        <button type="submit" id="signUp-btn">Let's thrift</button>
       </form>
     </div>
   );

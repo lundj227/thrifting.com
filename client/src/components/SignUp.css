@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+
+*{
+    background-color: #F3EEEA;
+}
+
 .signUpForm {
     text-align: center;
   }
@@ -7,7 +14,6 @@
     flex-direction: column;
     width: 300px;
     margin: 0 auto;
-    color: blue;
   }
   
   .signUpForm input,
@@ -15,57 +21,106 @@
     margin-bottom: 10px;
     padding: 8px;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    color: blue;
+    border: 1px solid #776B5D;
   }
   
   .signUpForm label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: blue;
   }
+
   
-  h2 {
-    color: black;
+  
+  .createAccount {
+    color: #776B5D ;
     font-size: 100px;
     margin: 0;
+    font-family: 'Playfair Display';
   }
 
   #username{
+    border-width: 3px;
     font-size: 20px;
-    border-radius: 20px;
-    margin-left: 20px;
+    border-radius: 55px;
     margin-bottom: 20px;
+    padding: 20px;
+    width: 475px;
+    font-family: 'Playfair Display';
+    transition: background-color 0.5s ease;
+    border-color: #776B5D;
+    
   }
 
   #email{
+    border-width: 3px;
+    border-color: #776B5D;
+    padding: 20px;
     font-size: 20px;
-    border-radius: 20px;
-    margin-left: 20px;
+    border-radius: 55px;
+    width: 475px;
+    font-family: 'Playfair Display';
+    transition: background-color 1.5s ease;
   }
 
   #password{
+    border-width: 3px;
+    border-color: #776B5D;
+    padding: 20px;
     margin-top: 20px;
     font-size: 20px;
-    border-radius: 20px;
-    margin-left: 20px;
+    border-radius: 55px;
+     width: 475px;
+     font-family: 'Playfair Display';
+     transition: background-color 0.5s ease;
+    
   }
 
   #signUp-btn{
     margin-top: 20px;
+    border-width: 3px;
+    width: 200px;
+    height: 40px;
+   border-color: #776B5D;
+   background-color: #F3EEEA;
+   transition: background-color 0.5s ease;
+   border-radius: 55px;
+  }
+
+  #signUp-btn:hover{
+    background-color: #EBE3D5;
+  }
+  
+  #email:hover{
+    background-color: #EBE3D5;
+  }
+
+  #username:hover{
+    background-color: #EBE3D5;
+  }
+
+  #password:hover{
+    background-color: #EBE3D5;
   }
 
   #username::placeholder {
     color: black; 
     text-align: center;
+    font-size: 30px;
   }
 
   #password::placeholder{
     color: black; 
     text-align: center;
+    font-size: 30px;
   }
 
   #email::placeholder{
     color: black; 
     text-align: center;
+    font-size: 30px;
+  }
+
+  .centered-input {
+    text-align: center;
+    font-size: 20px;
   }
