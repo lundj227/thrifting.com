@@ -1,0 +1,71 @@
+.signUpForm {
+    text-align: center;
+  }
+  
+  .signUpForm form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    color: blue;
+  }
+  
+  .signUpForm input,
+  .signUpForm button {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    color: blue;
+  }
+  
+  .signUpForm label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: blue;
+  }
+  
+  h2 {
+    color: black;
+    font-size: 100px;
+    margin: 0;
+  }
+
+  #username{
+    font-size: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  #email{
+    font-size: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+
+  #password{
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+
+  #signUp-btn{
+    margin-top: 20px;
+  }
+
+  #username::placeholder {
+    color: black; 
+    text-align: center;
+  }
+
+  #password::placeholder{
+    color: black; 
+    text-align: center;
+  }
+
+  #email::placeholder{
+    color: black; 
+    text-align: center;
+  }
