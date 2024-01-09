@@ -1,9 +1,13 @@
-#root {
-    margin: 0; padding: 0; border: 0; box-sizing: border-box;
-    min-height: 100vh;
-    
+html{
+    display: block
 }
- 
+#root {
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    box-sizing: border-box;
+}
+
 h1{
     font-size: 3em;  
     margin-bottom: 10px !important;
