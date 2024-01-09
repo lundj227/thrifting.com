@@ -24,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/browse" element={<Browse />} />
-          <Route path="/product/:productId" component={ProductInfo} /> 
+          <Route path="/product/:productId" element={<ProductInfo />} /> {/* Use 'element' here */}
         </Routes>
       </Router>
     </ApolloProvider>
