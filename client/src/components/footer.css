@@ -1,0 +1,29 @@
+/* Footer.css */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.site-content {
+  flex: 1; 
+}
+
+.footer {
+  width: 100%;
+  background-color: #f0f0f0; 
+  color: rgb(0, 0, 0); 
+  text-align: center;
+  line-height: 50px; 
+  height: 50px; 
+  position: sticky;
+  bottom: 0;
+}

@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -7,6 +8,7 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
+import Footer from './components/footer'; 
 import './App.css';
 
 const client = new ApolloClient({
@@ -24,10 +26,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/browse" element={<Browse />} />
-          <Route path="/product/:productId" component={ProductInfo} /> 
+          <Route path="/product/:productId" element={<ProductInfo />} />
         </Routes>
+        <Footer /> 
       </Router>
     </ApolloProvider>
   );
 }
+
 export default App;
