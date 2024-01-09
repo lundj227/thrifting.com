@@ -5,8 +5,7 @@
     "main": "server/server.js",
     "scripts": {
         "start": "node server/server.js",
-        "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\" \"cd server && npm run seed\"",
-
+        "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
         "seed": "node server/seeders/seed.js",
         "install": "cd server && npm i && cd ../client && npm i",
         "build": "cd client && npm run build",
@@ -16,12 +15,13 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "concurrently": "^5.3.0"
+        "concurrently": "^7.0.0"
     },
     "dependencies": {
         "@apollo/client": "^3.8.8",
         "@apollo/server": "^4.9.5",
         "apollo-server-express": "^3.13.0",
+        "atropos": "^2.0.2",
         "bcrypt": "^5.1.1",
         "bootstrap": "^5.3.2",
         "cors": "^2.8.5",

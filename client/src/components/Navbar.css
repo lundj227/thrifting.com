@@ -1,0 +1,50 @@
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 50px; 
+}
+
+.logo {
+    text-align: center;
+    position: absolute;  
+    left: 50%;
+    transform: translateX(-50%);  
+}
+.logo a {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-decoration: none !important;
+    color: black !important;
+  }
+
+  .icons {
+    display: flex;
+    gap: 40px;  
+    align-items: center;  
+    margin-left: auto; 
+    
+}
+
+.icons a i {
+    font-size: 2em; 
+    color: black; 
+}
+
+a{
+    color: black !important;
+}

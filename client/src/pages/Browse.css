@@ -1,0 +1,47 @@
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  font-size:20px;
+  margin-bottom: 40px;
+}
+
+ 
+.browse-page {  
+  text-align: center; 
+  margin-top: 100px;
+  height: 100hv;
+}
+
+.browse-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
+}
+
+.product-row {
+  margin-bottom: 20px;
+}
+
+.product-image {
+  max-width: 290px;  
+  height: auto;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 5);
+}

@@ -1,24 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/HomePage';
 import Login from './components/Login';
-import SignUp from './components/SignUp';
+import SignUp from './components/Signup';
 import Browse from './pages/Browse';
-import './App.css';  
+import ProductInfo from './pages/ProductInfo';
+import './App.css';
+
+const client = new ApolloClient({
+  uri: '/graphql',  
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path='/browse' element={<Browse />} />
-      </Routes>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/product/:productId" component={ProductInfo} /> 
+        </Routes>
+      </Router>
+    </ApolloProvider>
   );
 }
-
 export default App;

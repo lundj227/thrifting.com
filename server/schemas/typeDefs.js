@@ -1,34 +1,72 @@
-const typeDefs = `
-    type Category {
-        _id: ID
-        name: String
-    }
+const { gql } = require('apollo-server-express');
 
-    type Product {
-        _id: ID
-        name: String
-        description: String
-        image: String
-        quantity: Int
-        price: Float
-        category: Category
-    }
+const typeDefs = gql`
+type User {
+  _id: ID!
+  firstName: String!
+  lastName: String!
+  username: String! 
+  email: String!
+  favorites: [Product]!
+}
 
-    type Order {
-        _id: ID
-        purchaseDate: String
-        products: [Product]
-    }
+  type Auth{
+    token: String!
+    user: User!
+}
 
-    type User {
-        _id: ID
-        firstName: String
-        lastName: String
-        email: String
-        orders: [Order]
-    }
+  type Product {
+    _id: ID!
+    name: String!
+    description: String
+    image: String
+    price: Float!
+    quantity: Int!
+  }
 
-    
+  type Favorite {
+    _id: ID!
+    user: User!
+    product: Product!
+  }
+
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+  }
+
+  input ProductInput {
+    name: String!
+    description: String
+    image: String
+    price: Float!
+    quantity: Int!
+  }
+
+  type Query {
+    me: User 
+    products: [Product]  
+    product(_id: ID!): Product  
+    favorites: [Favorite]  
+  }
+
+  type UserLoginResponse {
+    token: String!
+    user: User!
+  }
+
+  type Mutation {
+    login(username: String!, password: String!): Auth
+    logout: Boolean 
+    addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
+    addFavorite(productId: ID!): Favorite  
+    removeFavorite(favoriteId: ID!): Boolean  
+    createProduct(input: ProductInput): Product  
+    updateProduct(_id: ID!, input: ProductInput): Product 
+    deleteProduct(_id: ID!): Boolean 
+  }
 `;
 
-// will need to add more for the mutations and stuff, check the UofO/22/01/23 file for more info (the classwork folder)
+module.exports = typeDefs;
