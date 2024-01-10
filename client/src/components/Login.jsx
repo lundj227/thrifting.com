@@ -16,17 +16,20 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await loginUser({
         variables: {
-          username: username, 
+          username: username,
           password: password,
         },
       });
 
-      if (response.data.login.token) {
+      const idToken = response?.data?.login?.token;
+  
+      if (idToken) {
         
+        localStorage.setItem('id_token', idToken);
         navigate('/browse');
       } else {
         setError('Invalid credentials. Please try again.');
@@ -36,6 +39,7 @@ function Login() {
       setError('An error occurred while logging in. Please try again later.');
     }
   };
+  
 
   return (
     <div className={`login-container ${showLoginForm ? 'login-form-visible' : ''}`}>
