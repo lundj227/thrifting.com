@@ -26,11 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/browse" element={<Browse />} />
-<<<<<<< HEAD
-          <Route path="/product/:productId" element={<ProductInfo />} />
-=======
           <Route path="/product/:productId" element={<ProductInfo />} /> {/* Use 'element' here */}
->>>>>>> 24b275201289175b768a949d57e2840ac24ed1a4
         </Routes>
         <Footer /> 
       </Router>
