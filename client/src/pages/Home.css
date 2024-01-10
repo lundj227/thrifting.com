@@ -42,3 +42,18 @@
   transform: translateY(-3px);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
+
+@media screen and (max-width: 600px) {
+  .home-title {
+    font-size: 2em; /* Adjust font size for smaller screens */
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .home-button {
+    width: 60%; /* Make buttons take up full width */
+  }
+}

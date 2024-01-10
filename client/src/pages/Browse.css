@@ -50,3 +50,17 @@ h3 {
   font-size: 1.5em;
 }
 
+@media screen and (max-width: 1200px){
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .product-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
