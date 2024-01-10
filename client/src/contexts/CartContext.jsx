@@ -1,42 +1,27 @@
-// CartContext.js
 import React, { createContext, useContext, useReducer } from 'react';
 
 const CartContext = createContext();
 
 export const useCart = () => {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 };
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      // Check if the item already exists in the cart
-      const existingItemIndex = state.cartItems.findIndex(
-        (item) => item.productId === action.payload.productId
-      );
-
-      if (existingItemIndex !== -1) {
-        // If the item already exists, update its quantity
-        const updatedCartItems = [...state.cartItems];
-        updatedCartItems[existingItemIndex].quantity += action.payload.quantity;
-
-        return {
-          ...state,
-          cartItems: updatedCartItems,
-        };
-      } else {
-        // If the item doesn't exist, add it to the cart
-        return {
-          ...state,
-          cartItems: [...state.cartItems, action.payload],
-        };
-      }
-    // Add more cases for removing items, updating quantities, etc.
+      return {
+        ...state,
+        cartItems: [...state.cartItems, action.payload],
+      };
+ 
     default:
       return state;
   }
 };
-
 
 export const CartProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, { cartItems: [] });

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { GET_PRODUCT } from '../utils/queries'; 
-import { ADD_TO_CART } from '../utils/mutations'; 
+import { GET_PRODUCT } from '../utils/queries';
+import { ADD_TO_CART } from '../utils/mutations';
 import '../pages/ProductInfo.css';
+import { useCart } from '../contexts/CartContext'; // Import useCart hook
 
 function ProductInfo() {
   const { productId } = useParams();
-  const [quantity, setQuantity] = useState(1);  
+  const [quantity, setQuantity] = useState(1);
+  const { dispatch } = useCart(); // Access the dispatch function from CartContext
 
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: productId },
@@ -20,10 +22,18 @@ function ProductInfo() {
       const response = await addToCart({
         variables: {
           productId: productId,
-          quantity: quantity
-        }
+          quantity: quantity,
+        },
       });
-      addToCartGlobal(response.data.addToCart); // Update global cart state
+
+      // Dispatch an action to add the item to the cart
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: {
+          productId: productId,
+          quantity: quantity,
+        },
+      });
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -46,7 +56,7 @@ function ProductInfo() {
         <button onClick={() => setQuantity(quantity + 1)}>+</button>
         <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity === 1}>-</button>
       </div>
-      <button onClick={handleAddToBag}>Add to Bag</button>
+      <button onClick={handleAddToBag}>Add to Cart</button>  
     </div>
   );
 }

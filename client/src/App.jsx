@@ -7,9 +7,8 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
-import Footer from './components/Footer'; // Correct import for Footer
 import Cart from './pages/Cart';
-import './App.css';
+import { CartProvider } from './contexts/CartContext'; // Import the CartProvider
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -20,16 +19,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/product/:productId" element={<ProductInfo />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <Footer />
+        <CartProvider> {/* Wrap your app with CartProvider */}
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/product/:productId" element={<ProductInfo />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </CartProvider>
       </Router>
     </ApolloProvider>
   );
