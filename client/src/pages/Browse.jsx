@@ -24,7 +24,9 @@ const BrowsePage = () => {
 
   return (
     <div className="browse-page">
-      <h3>New Arrivals</h3>
+      <div className='newArrivals'>
+        <h3>New Arrivals</h3>
+      </div>
       <div className="product-list">
         {products.map((product) => (
           <Product
