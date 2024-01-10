@@ -27,8 +27,9 @@
   }
   
   .product-details button {
-    background-color: #007bff;
-    color: white;
+    color: #fff;
+    background-color: #000;
+    border: none;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -39,7 +40,8 @@
   }
   
   .product-details button:hover {
-    background-color: #0056b3;
+    background-color: #ffd700;
+    color: #000;
   }
   
   .product-details button:disabled {
