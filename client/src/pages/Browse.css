@@ -9,7 +9,17 @@ h1{
   margin-bottom: 40px;
 }
 
- 
+.favorite-button {
+  background-color: black;
+}
+
+.favorite-button:hover {
+  background-color: #ffd700;
+  color: black;
+  transform: scale(1.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
 .browse-page {  
   text-align: center; 
   margin-top: 100px;
