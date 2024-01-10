@@ -82,7 +82,58 @@ const resolvers = {
       await Product.findByIdAndDelete(_id);
       return true;
     },
+
+    addToCart: async (_, { productId, quantity }, context) => {
+      // Validate user authentication
+      if (!context.user) {
+        throw new Error('Not authenticated.');
+      }
     
+      // Fetch the user's cart or create a new one if it doesn't exist
+      const user = await User.findById(context.user._id).populate('cart');
+    
+      // Find the product that the user wants to add to the cart
+      const product = await Product.findById(productId);
+    
+      if (!product) {
+        throw new Error('Product not found.');
+      }
+    
+      // Check if the product is already in the user's cart
+      const existingCartItem = user.cart.items.find(item => item.product.toString() === productId);
+    
+      if (existingCartItem) {
+        // If the product is already in the cart, update the quantity
+        existingCartItem.quantity += quantity;
+      } else {
+        // If the product is not in the cart, add a new cart item
+        user.cart.items.push({
+          product: productId,
+          quantity: quantity,
+        });
+      }
+    
+      // Calculate the totalAmount based on cart items
+      let totalAmount = 0;
+      for (const item of user.cart.items) {
+        const product = await Product.findById(item.product);
+        if (product) {
+          totalAmount += product.price * item.quantity;
+        }
+      }
+    
+      // Save the updated cart and user
+      await user.cart.save();
+      await user.save();
+    
+      // Return the updated Cart object (with items and totalAmount)
+      return {
+        items: user.cart.items,
+        totalAmount: totalAmount,
+      };
+    }
+    
+
   },
   User: {
   

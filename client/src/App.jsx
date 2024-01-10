@@ -11,7 +11,16 @@ import Cart from './pages/Cart';
 import { CartProvider } from './contexts/CartContext'; // Import the CartProvider
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  request: (operation) => {
+    const token = localStorage.getItem("id_token");
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+  },
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 

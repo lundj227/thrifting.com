@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom';
 import { GET_PRODUCT } from '../utils/queries';
 import { ADD_TO_CART } from '../utils/mutations';
 import '../pages/ProductInfo.css';
-import { useCart } from '../contexts/CartContext'; // Import useCart hook
+import { useCart } from '../contexts/CartContext'; 
+import AuthService from '../utils/auth'; 
+ 
 
 function ProductInfo() {
   const { productId } = useParams();
@@ -19,10 +21,18 @@ function ProductInfo() {
 
   const handleAddToBag = async () => {
     try {
+      const token = AuthService.getToken(); // Retrieve the token from AuthService
+      console.log('Token:', token); // Add this line to check the token
+
       const response = await addToCart({
         variables: {
           productId: productId,
           quantity: quantity,
+        },
+        context: {
+          headers: {
+            authorization: token ? `Bearer ${token}` : "", // Add the token to the headers
+          },
         },
       });
 
@@ -56,7 +66,7 @@ function ProductInfo() {
         <button onClick={() => setQuantity(quantity + 1)}>+</button>
         <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity === 1}>-</button>
       </div>
-      <button onClick={handleAddToBag}>Add to Cart</button>  
+      <button onClick={handleAddToBag}>Add to Cart</button>
     </div>
   );
 }

@@ -12,7 +12,7 @@ type User {
 
   type Auth{
     token: String!
-    user: User!
+    user: User
 }
 
   type Product {
