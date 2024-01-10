@@ -82,6 +82,7 @@ const resolvers = {
       await Product.findByIdAndDelete(_id);
       return true;
     },
+    
   },
   User: {
   

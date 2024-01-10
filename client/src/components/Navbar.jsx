@@ -4,6 +4,8 @@ import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHeart, faShoppingCart, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
+import Cart from '../pages/Cart';
+
 
 function Navbar() {
   const location = useLocation();
@@ -23,7 +25,7 @@ function Navbar() {
     <div className="navbar-container">
       <div className="navbar">
         <div className="logo">
-          <Link to="/" className="logo-text">T H R I F T I N G</Link>
+          <Link to="/browse" className="logo-text">T H R I F T I N G</Link>
         </div>
         <div className="icons">
           <Link to="/account">

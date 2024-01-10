@@ -7,6 +7,8 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
+import Cart from './pages/Cart';
+
 import './App.css';
 
 const client = new ApolloClient({
@@ -25,6 +27,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/product/:productId" element={<ProductInfo />} /> {/* Use 'element' here */}
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </ApolloProvider>
