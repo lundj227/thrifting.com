@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  
 }
 
 #root {
@@ -26,4 +27,7 @@ body {
   height: 50px; 
   position: sticky;
   bottom: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  
 }
