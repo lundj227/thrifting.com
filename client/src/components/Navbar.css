@@ -71,3 +71,26 @@ a{
 path:hover {
     fill: #ffd700;
 }
+
+@media screen and (max-width: 850px) {
+    .navbar {
+        padding: 0 5px; /* Reduce padding */
+        
+    }
+
+    .logo a {
+        font-size: 1em; 
+    }
+
+    .icons {
+        gap: 5px; 
+    }
+
+    .icons a i {
+        font-size: 1.5em; 
+    }
+
+    .logout-button {
+        padding: 8px 16px; 
+    }
+}
