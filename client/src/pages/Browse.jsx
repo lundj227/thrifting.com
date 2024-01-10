@@ -27,14 +27,15 @@ const BrowsePage = () => {
       <h3>New Arrivals</h3>
       <div className="product-list">
         {products.map((product) => (
-         <Product
-         key={product._id}
-         name={product.name}
-         image={product.image}
-         price={product.price}
-         isFavorited={favorites.includes(product._id)}
-         onToggleFavorite={() => toggleFavorite(product._id)}
-       />
+          <Product
+            key={product._id}
+            _id={product._id} // Pass _id prop explicitly
+            name={product.name}
+            image={product.image}
+            price={product.price}
+            isFavorited={favorites.includes(product._id)}
+            onToggleFavorite={() => toggleFavorite(product._id)}
+          />
         ))}
       </div>
     </div>
