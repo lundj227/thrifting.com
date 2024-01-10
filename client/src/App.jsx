@@ -7,6 +7,7 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
+import Footer from './components/footer';
 import Cart from './pages/Cart';
 import { CartProvider } from './contexts/CartContext'; // Import the CartProvider
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
           </Routes>
         </CartProvider>
+        <Footer/>
       </Router>
     </ApolloProvider>
   );
