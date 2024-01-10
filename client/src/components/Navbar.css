@@ -48,3 +48,29 @@
 a{
     color: black !important;
 }
+
+.logout-button{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Times New Roman', Times, serif
+}
+
+.logout-button:hover {
+    background-color: #ffd700;
+    color: #000;
+}
+
+svg:hover {
+    fill: #ffd700;
+}
+path:hover {
+    fill: #ffd700;
+}

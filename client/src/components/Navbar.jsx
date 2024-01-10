@@ -28,16 +28,16 @@ function Navbar() {
           <Link to="/browse" className="logo-text">T H R I F T I N G</Link>
         </div>
         <div className="icons">
-          <Link to="/account">
+          <Link to="/account" className='hoverGold'>
             <FontAwesomeIcon icon={faUser} size="xl" />
           </Link>
-          <Link to="/favorites">
+          <Link to="/favorites" className='hoverGold'>
             <FontAwesomeIcon icon={faHeart} size="xl" />
           </Link>
-          <Link to="/cart">
+          <Link to="/cart" className='hoverGold'>
             <FontAwesomeIcon icon={faShoppingCart} size="xl" />
           </Link>
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
       </div>
     </div>
