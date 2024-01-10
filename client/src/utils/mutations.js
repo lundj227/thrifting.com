@@ -17,8 +17,6 @@ export const LOGOUT_USER = gql`
   }
 `;
 
-
- 
 export const ADD_USER = gql`
 mutation addUser($firstName: String!, $lastName: String!, $username: String!, $email: String!, $password: String!) {
   addUser(
@@ -65,6 +63,24 @@ export const UPDATE_PRODUCT = gql`
       image
       price
       quantity
+    }
+  }
+`;
+
+export const ADD_TO_CART = gql`
+  mutation AddToCart($productId: ID!, $quantity: Int!) {
+    addToCart(productId: $productId, quantity: $quantity) {
+      items {
+        product {
+          _id
+          name
+          description
+          image
+          price
+        }
+        quantity
+      }
+      totalAmount
     }
   }
 `;

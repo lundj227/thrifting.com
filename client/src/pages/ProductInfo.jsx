@@ -1,24 +1,37 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { GET_PRODUCT } from '../utils/queries';
+import { GET_PRODUCT } from '../utils/queries'; 
+import { ADD_TO_CART } from '../utils/mutations'; 
+import '../pages/ProductInfo.css';
 
 function ProductInfo() {
-  // Get the productId parameter from the URL
   const { productId } = useParams();
+  const [quantity, setQuantity] = useState(1);  
 
-  if (!productId) {
-    // Handle the case where productId is not provided
-    return <p>Product ID is missing.</p>;
-  }
-
-  // Fetch product details using Apollo Client and your GraphQL query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: productId }, // Use the productId from URL parameters
+    variables: { id: productId },
   });
 
-  if (loading) return <p>Loading...</p>;
+  const [addToCart, { loading: addToCartLoading, error: addToCartError }] = useMutation(ADD_TO_CART);
+
+  const handleAddToBag = async () => {
+    try {
+      const response = await addToCart({
+        variables: {
+          productId: productId,
+          quantity: quantity
+        }
+      });
+      addToCartGlobal(response.data.addToCart); // Update global cart state
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+
+  if (loading || addToCartLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  if (addToCartError) return <p>Error adding to cart: {addToCartError.message}</p>;
 
   const product = data.product;
 
@@ -28,7 +41,12 @@ function ProductInfo() {
       <img src={product.image} alt={product.name} />
       <p>Price: ${product.price}</p>
       <p>Description: {product.description}</p>
-      {/* Add buttons or components for purchase, add to cart, etc. */}
+      <div>
+        <p>Quantity: {quantity}</p>
+        <button onClick={() => setQuantity(quantity + 1)}>+</button>
+        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity === 1}>-</button>
+      </div>
+      <button onClick={handleAddToBag}>Add to Bag</button>
     </div>
   );
 }

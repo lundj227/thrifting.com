@@ -57,6 +57,18 @@ type User {
     user: User!
   }
 
+  type CartItem {
+    id: ID!
+    quantity: Int!
+    product: Product!
+  }
+  
+  type Cart {
+    items: [CartItem!]!
+    totalAmount: Float!
+  }
+  
+
   type Mutation {
     login(username: String!, password: String!): Auth
     logout: Boolean 
@@ -66,6 +78,7 @@ type User {
     createProduct(input: ProductInput): Product  
     updateProduct(_id: ID!, input: ProductInput): Product 
     deleteProduct(_id: ID!): Boolean 
+    addToCart(productId: ID!, quantity: Int!): Cart
   }
 `;
 
