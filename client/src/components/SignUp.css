@@ -30,6 +30,12 @@
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 10px;
+  transition: border-color 0.8s ease, color 0.5s ease;
+}
+
+.signup-input:hover {
+  border-color: #ffd700; /* Change border color to gold on hover */
+  color: black; /* Change text color to black on hover */
 }
 
 .signup-input:focus {
