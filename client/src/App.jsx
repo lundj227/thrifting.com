@@ -10,23 +10,27 @@ import ProductInfo from './pages/ProductInfo';
 import Footer from './components/footer';
 import Cart from './pages/Cart';
 import { CartProvider } from './contexts/CartContext';  
- 
-const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
-    console.log("Token from localStorage:", token); // Add this line
-    if (token) {
-      operation.setContext({
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-    }
-  },
-  uri: "/graphql",
-  cache: new InMemoryCache(),
+import { createHttpLink } from '@apollo/client/link/http'; // Import createHttpLink
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
  
 function App() {
   return (

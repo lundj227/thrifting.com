@@ -115,15 +115,14 @@ const resolvers = {
           throw new Error('User not found.');
         }
     
-        // Find the product by its ID
-        const product = await Product.findById(productId);
-        if (!product) {
-          throw new Error('Product not found.');
+        // Ensure that user.cart is defined and has items
+        if (!user.cart) {
+          user.cart = { items: [] };
         }
     
         // Check if the product is already in the user's cart
         const existingCartItemIndex = user.cart.items.findIndex(
-          (item) => item.product.toString() === productId
+          (item) => item.product && item.product.toString() === productId
         );
     
         if (existingCartItemIndex > -1) {
