@@ -2,6 +2,22 @@ const User = require('../models/User');
 const Product = require('../models/Product');
 const Favorite = require('../models/Favorite');
 const { signToken } = require('../utils/auth');  
+const { AuthenticationError } = require('apollo-server-errors');
+
+
+async function calculateTotalAmount(cartItems) {
+  let totalAmount = 0;
+
+  for (const cartItem of cartItems) {
+    const product = await Product.findById(cartItem.product);
+    if (product) {
+      totalAmount += product.price * cartItem.quantity;
+    }
+  }
+
+  return totalAmount;
+}
+
 const resolvers = {
   Query: {
     me: async (_, __, context) => {
@@ -60,15 +76,18 @@ const resolvers = {
     },
     
     
-    addUser: async (_, { firstName, lastName, username, email, password }) => {
-      const user = await User.create({ firstName, lastName, username, email, password });
-      if (!user) {
-        throw new Error('Something is wrong!');
+    addUser: async (_, args) => {
+      try {
+        const user = await User.create(args); // Create a new user
+        const token = signToken(user); // Generate a token for the new user
+        return { token, user };
+      } catch (error) {
+        // Handle any errors that occur during user creation
+        throw new AuthenticationError('User registration failed.');
       }
-  
-      const token = signToken(user);
-      return { token, user };
     },
+ 
+    
     createProduct: async (_, { input }) => {
       const product = await Product.create(input);
       return product;
@@ -84,54 +103,53 @@ const resolvers = {
     },
 
     addToCart: async (_, { productId, quantity }, context) => {
-      // Validate user authentication
+      // Check if the user is authenticated based on the context
       if (!context.user) {
         throw new Error('Not authenticated.');
       }
     
-      // Fetch the user's cart or create a new one if it doesn't exist
-      const user = await User.findById(context.user._id).populate('cart');
-    
-      // Find the product that the user wants to add to the cart
-      const product = await Product.findById(productId);
-    
-      if (!product) {
-        throw new Error('Product not found.');
-      }
-    
-      // Check if the product is already in the user's cart
-      const existingCartItem = user.cart.items.find(item => item.product.toString() === productId);
-    
-      if (existingCartItem) {
-        // If the product is already in the cart, update the quantity
-        existingCartItem.quantity += quantity;
-      } else {
-        // If the product is not in the cart, add a new cart item
-        user.cart.items.push({
-          product: productId,
-          quantity: quantity,
-        });
-      }
-    
-      // Calculate the totalAmount based on cart items
-      let totalAmount = 0;
-      for (const item of user.cart.items) {
-        const product = await Product.findById(item.product);
-        if (product) {
-          totalAmount += product.price * item.quantity;
+      try {
+        // Find the user by their ID
+        const user = await User.findById(context.user._id);
+        if (!user) {
+          throw new Error('User not found.');
         }
+    
+        // Find the product by its ID
+        const product = await Product.findById(productId);
+        if (!product) {
+          throw new Error('Product not found.');
+        }
+    
+        // Check if the product is already in the user's cart
+        const existingCartItemIndex = user.cart.items.findIndex(
+          (item) => item.product.toString() === productId
+        );
+    
+        if (existingCartItemIndex > -1) {
+          // If the product already exists in the cart, update the quantity
+          user.cart.items[existingCartItemIndex].quantity += quantity;
+        } else {
+          // If the product is not in the cart, add it to the cart
+          user.cart.items.push({ product: productId, quantity });
+        }
+    
+        // Save the user with the updated cart
+        await user.save();
+    
+        // Calculate the total amount of the cart
+        const totalAmount = await calculateTotalAmount(user.cart.items);
+    
+        // Return the updated cart
+        return {
+          items: user.cart.items,
+          totalAmount,
+        };
+      } catch (error) {
+        console.error('Error in addToCart:', error);
+        throw new Error('An error occurred while adding to the cart.');
       }
-    
-      // Save the updated cart and user
-      await user.cart.save();
-      await user.save();
-    
-      // Return the updated Cart object (with items and totalAmount)
-      return {
-        items: user.cart.items,
-        totalAmount: totalAmount,
-      };
-    }
+    },
     
 
   },

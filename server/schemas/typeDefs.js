@@ -5,9 +5,10 @@ type User {
   _id: ID!
   firstName: String!
   lastName: String!
-  username: String! 
+  username: String!
   email: String!
   favorites: [Product]!
+  cart: Cart  
 }
 
   type Auth{

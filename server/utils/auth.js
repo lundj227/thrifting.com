@@ -9,23 +9,26 @@ module.exports = {
   authMiddleware: function ({req}) {
    
     let token = req.query.token || req.headers.authorization || req.body.token;
+    console.log("Token before splitting:", token);
 
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
+  console.log("Token after splitting:", token);
 
     if (!token) {
       return req;
     }
 
     
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log('Invalid token');
-      return req;
-    }
+   try {
+  const { data } = jwt.verify(token, secret, { maxAge: expiration });
+  req.user = data;
+  console.log('User from token:', req.user);
+} catch {
+  console.log('Invalid token');
+  return req;
+}
 
    
     return req;

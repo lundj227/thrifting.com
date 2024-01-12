@@ -9,27 +9,30 @@ import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
 import Footer from './components/footer';
 import Cart from './pages/Cart';
-import { CartProvider } from './contexts/CartContext'; // Import the CartProvider
-
+import { CartProvider } from './contexts/CartContext';  
+ 
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
-
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
+    console.log("Token from localStorage:", token); // Add this line
+    if (token) {
+      operation.setContext({
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+    }
   },
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
+ 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <CartProvider> {/* Wrap your app with CartProvider */}
+        <CartProvider> 
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />

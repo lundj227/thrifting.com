@@ -1,59 +1,51 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { GET_PRODUCT } from '../utils/queries';
 import { ADD_TO_CART } from '../utils/mutations';
 import '../pages/ProductInfo.css';
-import { useCart } from '../contexts/CartContext'; 
-import AuthService from '../utils/auth'; 
- 
+import { useCart } from '../contexts/CartContext';
+import AuthService from '../utils/auth';
 
 function ProductInfo() {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const { dispatch } = useCart(); // Access the dispatch function from CartContext
+  const { dispatch } = useCart();
 
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: productId },
-  });
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id: productId } });
+  const [addToCartMutation, { loading: addingToCart }] = useMutation(ADD_TO_CART);
 
-  const [addToCart, { loading: addToCartLoading, error: addToCartError }] = useMutation(ADD_TO_CART);
-
-  const handleAddToBag = async () => {
+  const handleAddToCart = async () => {
+    const token = localStorage.getItem("id_token");
+    console.log("Token from localStorage:", token);
+  
+    if (!AuthService.loggedIn()) {
+      console.log("User is not logged in. Redirecting to /login...");
+      navigate('/login');
+      return;
+    }
+  
     try {
-      const token = AuthService.getToken(); // Retrieve the token from AuthService
-      console.log('Token:', token); // Add this line to check the token
-
-      const response = await addToCart({
-        variables: {
-          productId: productId,
-          quantity: quantity,
-        },
-        context: {
-          headers: {
-            authorization: token ? `Bearer ${token}` : "", // Add the token to the headers
-          },
-        },
+      const { data: addToCartData } = await addToCartMutation({
+        variables: { productId, quantity },
       });
-
-      // Dispatch an action to add the item to the cart
+  
       dispatch({
         type: 'ADD_TO_CART',
-        payload: {
-          productId: productId,
-          quantity: quantity,
-        },
+        payload: { productId, quantity },
       });
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
   };
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading product: {error.message}</p>;
 
-  if (loading || addToCartLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  if (addToCartError) return <p>Error adding to cart: {addToCartError.message}</p>;
+  const product = data?.product;
 
-  const product = data.product;
+  if (!product) return <p>Product not found!</p>;
 
   return (
     <div className="product-details">
@@ -63,10 +55,10 @@ function ProductInfo() {
       <p>Description: {product.description}</p>
       <div>
         <p>Quantity: {quantity}</p>
-        <button onClick={() => setQuantity(quantity + 1)}>+</button>
-        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity === 1}>-</button>
+        <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
+        <button onClick={() => setQuantity(prev => Math.max(1, prev - 1))} disabled={quantity === 1}>-</button>
       </div>
-      <button onClick={handleAddToBag}>Add to Cart</button>
+      <button onClick={handleAddToCart} disabled={addingToCart}>Add to Cart</button>
     </div>
   );
 }
