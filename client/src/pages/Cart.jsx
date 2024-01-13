@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo } from 'react';
-import { useMutation } from '@apollo/client'; // Import useMutation
+import { useMutation } from '@apollo/client';
 import { REMOVE_FROM_CART } from '../utils/mutations';
 import '../pages/Cart.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCartItem } from '../actions/cartActions';
+import { updateCartItem, removeFromCart } from '../actions/cartActions'; // Import removeFromCart
+
 
 function Cart() {
   const dispatch = useDispatch();
@@ -42,11 +43,13 @@ function Cart() {
   
       // Use the mutation to remove the item from the cart
       const { data } = await removeFromCartMutation({
-        variables: { productId }, // Use the correct variable name "productId"
+        variables: { productId },
       });
   
-      // Handle the response data as needed
       console.log("Item removed successfully.");
+  
+      // Dispatch action to update Redux store
+      dispatch(removeFromCart(productId));  // Use your Redux action
     } catch (error) {
       console.error('Error in removeFromCart:', error);
       // Handle the error
