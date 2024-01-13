@@ -1,37 +1,79 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useMutation } from '@apollo/client'; // Import useMutation
+import { REMOVE_FROM_CART } from '../utils/mutations';
 import '../pages/Cart.css';
-import { connect } from 'react-redux';
-import {
-  removeFromCart,
-  updateCartItem,
-  clearCart,
-} from '../actions/action';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCartItem } from '../actions/cartActions';
 
-class Cart extends React.Component {
-  handleQuantityChange = (productId, value) => {
+function Cart() {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const filteredCartItems = useMemo(() =>
+    cartItems.filter((item) => item.product),
+    [cartItems]
+  );
+
+  // Define the removeFromCart mutation
+  const [removeFromCartMutation] = useMutation(REMOVE_FROM_CART);
+
+  const handleQuantityChange = (productId, value) => {
     const quantity = parseInt(value, 10);
     if (!isNaN(quantity) && quantity >= 0) {
-      this.props.updateCartItem(productId, quantity);
+      dispatch(updateCartItem(productId, quantity));
     }
   };
-  render() {
-    const { cartItems, removeFromCart, clearCart } = this.props;
+
+  const handleRemoveFromCart = async (productId) => {
+    try {
+      console.log("Attempting to remove cart item with productId:", productId);
   
-    console.log('Cart Items:', cartItems);
-    if (!cartItems || cartItems.length === 0 || !cartItems[0].items || cartItems[0].items.length === 0) {
-      return <div>Your cart is empty.</div>;
+      // You've provided the correct user context with the user's ID
+      const context = { user: { _id: '65a2f88e1b8b5069c3d35a61' } };
+  
+      if (!context.user) {
+        throw new Error('User not authenticated.');
+      }
+  
+      const userId = context.user._id;
+  
+      if (!userId) {
+        throw Error('User ID not found in context.');
+      }
+  
+      // Use the mutation to remove the item from the cart
+      const { data } = await removeFromCartMutation({
+        variables: { productId }, // Use the correct variable name "productId"
+      });
+  
+      // Handle the response data as needed
+      console.log("Item removed successfully.");
+    } catch (error) {
+      console.error('Error in removeFromCart:', error);
+      // Handle the error
     }
+  };
+  
 
+  useEffect(() => {
+    console.log("Cart Items:", cartItems);
+  }, [cartItems]);
 
-    const firstCart = cartItems[0];
+  const isCartEmpty = cartItems.length === 0;
 
-    return (
-      <div className="cart-container">
-        <h2>My Shopping Cart</h2>
+  return (
+    <div className="cart-container">
+      <h2>My Shopping Cart</h2>
+      {isCartEmpty ? (
+        <div className="cart-empty">Your cart is empty.</div>
+      ) : (
         <ul className="cart-list">
-          {firstCart.items.map((item) => (
-            <li key={`${firstCart.__typename}-${item.product._id}`} className="cart-item">
-              <img className="cart-item-image" src={item.product.image} alt={item.product.name} />
+{cartItems.map((item, index) => (
+  <li key={`${item.product._id}-${index}`} className="cart-item">
+              <img
+                className="cart-item-image"
+                src={item.product.image}
+                alt={item.product.name}
+              />
               <div className="cart-item-details">
                 <h3 className="cart-item-title">{item.product.name}</h3>
                 <p className="cart-item-price">Price: ${item.product.price}</p>
@@ -40,43 +82,20 @@ class Cart extends React.Component {
                   <input
                     type="number"
                     value={item.quantity}
-                    onChange={(e) => this.handleQuantityChange(item.product._id, e.target.value)}
+                    onChange={(e) =>
+                      handleQuantityChange(item.product._id, e.target.value)
+                    }
                     aria-label={`Quantity for ${item.product.name}`}
                   />
                 </div>
-                <button
-                  onClick={() => this.props.removeFromCart(item.product._id)}
-                  className="remove-button"
-                  aria-label={`Remove ${item.product.name} from cart`}
-                >
-                  Remove
-                </button>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                        <button
-                  onClick={this.props.clearCart}
-                  className="clear-cart-button"
-                  aria-label="Clear cart"
-                >
-                  Clear Cart
-                </button>
-                      </div>
-    );
-    
-  }
+                <button onClick={() => handleRemoveFromCart(item.product._id)}>Remove</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
-
-const mapStateToProps = (state) => ({
-  cartItems: state.cart.cartItems,
-});
-
-const mapDispatchToProps = {
-  removeFromCart,
-  updateCartItem,
-  clearCart,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

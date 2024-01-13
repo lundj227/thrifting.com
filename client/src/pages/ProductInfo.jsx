@@ -1,45 +1,56 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'; // Import useDispatch
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client'; // Import useMutation
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_TO_CART } from '../utils/mutations';
 import { GET_PRODUCT } from '../utils/queries';
-import { ADD_TO_CART } from '../utils/mutations'; // Import your ADD_TO_CART mutation
 import '../pages/ProductInfo.css';
 import AuthService from '../utils/auth';
-import { addToCart as addToCartRedux } from '../actions/cartAction'; // Ensure this is the correct import
+import { addToCart } from '../actions/cartActions'; // Corrected import
 
 function ProductInfo() {
-  const [addToCartMutation] = useMutation(ADD_TO_CART);
+  const [quantity, setQuantity] = useState(1);
+  const [addToCartSuccess, setAddToCartSuccess] = useState(false); // Define state for success message
+  const [addToCartMutation, { loading: addToCartLoading, error: addToCartError }] = useMutation(ADD_TO_CART);
   const dispatch = useDispatch();
   const { productId } = useParams();
   const navigate = useNavigate();
 
-  const [quantity, setQuantity] = useState(1);
-
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id: productId } });
 
-  const handleAddToCart = async () => {
+  useEffect(() => {
     if (!AuthService.loggedIn()) {
-      console.log('User is not logged in. Redirecting to /login...');
+      console.log('User is not logged in. Redirecting to login...');
       navigate('/login');
+    }
+  }, [navigate]);
+
+  const handleAddToCart = async () => {
+    if (!productId || quantity < 1) {
+      console.error('Product ID or invalid quantity.');
       return;
     }
-
+  
     try {
-      const response = await addToCartMutation({ variables: { productId, quantity } });
-      // Dispatch Redux action with the result of the GraphQL mutation
-      dispatch(addToCartRedux(response.data.addToCart));
+      const { data: addToCartData } = await addToCartMutation({
+        variables: { productId, quantity },
+      });
+      
+      if (addToCartData && addToCartData.addToCart) {
+        dispatch(addToCart(addToCartData.addToCart.items)); // Dispatch the array of cart items
+        setAddToCartSuccess(true); // Set success state
+      } else {
+        console.error('Unexpected response format from addToCartMutation.');
+      }
     } catch (error) {
-      console.error('Error updating the cart:', error);
-      // Handle the error appropriately
+      console.error('Error adding to cart:', error);
     }
-  };
+  }; // Added closing brace for handleAddToCart function
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading product: {error.message}</p>;
+  if (loading || addToCartLoading) return <p>Loading...</p>;
+  if (error || addToCartError) return <p>Error: {error?.message || addToCartError?.message}</p>;
 
   const product = data?.product;
-
   if (!product) return <p>Product not found!</p>;
 
   return (
@@ -50,12 +61,17 @@ function ProductInfo() {
       <p>Description: {product.description}</p>
       <div>
         <p>Quantity: {quantity}</p>
-        <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
-        <button onClick={() => setQuantity(prev => Math.max(1, prev - 1))} disabled={quantity === 1}>-</button>
       </div>
-      <button onClick={() => handleAddToCart(productId, quantity)}>Add to Cart</button>
+      <button onClick={handleAddToCart} disabled={addToCartLoading}>
+        {addToCartLoading ? 'Adding to Cart...' : 'Add to Cart'}
+      </button>
+      {addToCartSuccess && (
+        <div className="success-message">
+          Item added to cart!
+        </div>
+      )}
     </div>
   );
 }
 
-export default ProductInfo; // Since Redux's connect is not used, removed it.
+export default ProductInfo;

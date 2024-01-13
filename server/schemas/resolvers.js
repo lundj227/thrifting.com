@@ -156,10 +156,77 @@ const resolvers = {
       }
     },
     
+    removeFromCart: async (_, { productId }, context) => {
+      try {
+        if (!context.user) {
+          throw new Error('User not authenticated.');
+        }
+    
+        const userId = context.user._id;
+    
+        if (!userId) {
+          throw new Error('User ID not found in context.');
+        }
+    
+        const user = await User.findById(userId);
+    
+        if (!user) {
+          throw new Error('User not found.');
+        }
+    
+        console.log('Cart items before removal:', user.cart);
+        console.log('Attempting to remove cart item with productId:', productId);
+    
+        let foundCartItemIndex = -1;
+    
+        for (let i = 0; i < user.cart.length; i++) {
+          if (user.cart[i].product._id.toString() === productId) {
+            foundCartItemIndex = i;
+            break;
+          }
+        }
+    
+        if (foundCartItemIndex === -1) {
+          // Product not found in cart, return default values for Product fields
+          return {
+            items: [],
+            totalAmount: 0,
+          };
+        }
+    
+        const removedCartItem = user.cart.splice(foundCartItemIndex, 1)[0];
+    
+        console.log('Removed cart item:', removedCartItem);
+    
+        // Save the user with the updated cart
+        await user.save();
+    
+        return {
+          items: user.cart.map((cartItem) => ({
+            id: cartItem._id,
+            quantity: cartItem.quantity,
+            product: {
+              _id: '', // Provide default value for _id
+              name: '', // Provide default value for name
+              description: '', // Provide default value for description
+              image: '', // Provide default value for image
+              price: 0, // Provide default value for price
+              quantity: 0, // Provide default value for quantity
+            },
+          })),
+          totalAmount: await calculateTotalAmount(user.cart),
+        };
+      } catch (error) {
+        console.error('Error in removeFromCart:', error);
+        throw new Error(error.message); // More specific error message
+      }
+    },
     
     
-
+    
   },
+    
+  
   User: {
   
     favorites: async (user) => {

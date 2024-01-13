@@ -84,3 +84,40 @@ export const ADD_TO_CART = gql`
     }
   }
 `;
+
+
+export const CLEAR_CART = gql`
+  mutation ClearCart {
+    clearCart {
+      items {
+        product {
+          _id
+          name
+          description
+          image
+          price
+        }
+        quantity
+      }
+      totalAmount
+    }
+  }
+`;
+
+export const REMOVE_FROM_CART = gql`
+  mutation RemoveFromCart($productId: ID!) {
+    removeFromCart(productId: $productId) {
+      items {
+        product {
+          _id
+          name
+          description
+          image
+          price
+        }
+        quantity
+      }
+      totalAmount
+    }
+  }
+`;

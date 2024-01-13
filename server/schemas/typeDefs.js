@@ -1,20 +1,20 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-type User {
-  _id: ID!
-  firstName: String!
-  lastName: String!
-  username: String!
-  email: String!
-  favorites: [Product]!
-  cart: Cart  
-}
+  type User {
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    username: String!
+    email: String!
+    favorites: [Product]!
+    cart: Cart
+  }
 
-  type Auth{
+  type Auth {
     token: String!
     user: User
-}
+  }
 
   type Product {
     _id: ID!
@@ -47,10 +47,10 @@ type User {
   }
 
   type Query {
-    me: User 
-    products: [Product]  
-    product(_id: ID!): Product  
-    favorites: [Favorite]  
+    me: User
+    products: [Product]
+    product(_id: ID!): Product
+    favorites: [Favorite]
   }
 
   type UserLoginResponse {
@@ -63,23 +63,28 @@ type User {
     quantity: Int!
     product: Product!
   }
-  
+
   type Cart {
     items: [CartItem!]!
     totalAmount: Float!
   }
-  
+
+  type CartUpdateResponse {
+    items: [CartItem]
+    totalAmount: Float
+  }
 
   type Mutation {
     login(username: String!, password: String!): Auth
-    logout: Boolean 
+    logout: Boolean
     addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
-    addFavorite(productId: ID!): Favorite  
-    removeFavorite(favoriteId: ID!): Boolean  
-    createProduct(input: ProductInput): Product  
-    updateProduct(_id: ID!, input: ProductInput): Product 
-    deleteProduct(_id: ID!): Boolean 
+    addFavorite(productId: ID!): Favorite
+    removeFavorite(favoriteId: ID!): Boolean
+    createProduct(input: ProductInput): Product
+    updateProduct(_id: ID!, input: ProductInput): Product
+    deleteProduct(_id: ID!): Boolean
     addToCart(productId: ID!, quantity: Int!): Cart
+    removeFromCart(productId: ID!): Cart # Update this line
   }
 `;
 

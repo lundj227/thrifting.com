@@ -1,49 +1,28 @@
-import {
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
-  UPDATE_CART_ITEM,
-  CLEAR_CART,
-} from '../actions/cartAction';
+// reducers/cartReducer.js
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/actionTypes';
 
 const initialState = {
-  cartItems: [], // Array of items in the cart
+  cartItems: [],
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      // Add the product to the cartItems array
+      // Add the new item to the cart
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: action.payload,
       };
-    case REMOVE_FROM_CART:
-      // Remove the product with the given ID from cartItems
-      return {
-        ...state,
-        cartItems: state.cartItems.filter(
-          (item) => item.productId !== action.payload
-        ),
-      };
-    case UPDATE_CART_ITEM:
-      // Update the quantity of a cart item with the given ID
-      return {
-        ...state,
-        cartItems: state.cartItems.map((item) =>
-          item.productId === action.payload.productId
-            ? { ...item, quantity: action.payload.quantity }
-            : item
-        ),
-      };
-    case CLEAR_CART:
-      // Clear the cart
-      return {
-        ...state,
-        cartItems: [],
-      };
-    default:
-      return state;
+      case REMOVE_FROM_CART:
+        return {
+          ...state,
+          cartItems: state.cartItems.filter(item => item.product._id !== action.payload),
+        };
+      default:
+        return state;
   }
+
+
 };
 
 export default cartReducer;
