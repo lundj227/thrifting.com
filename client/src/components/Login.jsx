@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 import './Login.css';
+import loginImage from '../assets/images/3.png';
 
 function Login() {
   const [showLoginForm, setShowLoginForm] = useState(false); 
@@ -45,7 +46,7 @@ function Login() {
     <div className={`login-container ${showLoginForm ? 'login-form-visible' : ''}`}>
       {!showLoginForm && (
         <div className="create-account">
-          <h1>Login</h1>
+         <img src={loginImage} alt="Login" />
         </div>
       )}
       <h1>{showLoginForm ? 'LOGIN' : ''}</h1>
@@ -75,7 +76,7 @@ function Login() {
           </div>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" className="login-button">
-            Login
+          <img src="./src/assets/images/5.png" alt="Login" />
           </button>
         </form>
       </div>

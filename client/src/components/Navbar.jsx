@@ -25,7 +25,9 @@ function Navbar() {
     <div className="navbar-container">
       <div className="navbar">
         <div className="logo">
-          <Link to="/browse" className="logo-text">T H R I F T I N G</Link>
+        <Link to="/browse">
+          <img src="../src/assets/images/title.png" alt="Thrifting Logo" />
+        </Link>
         </div>
         <div className="icons">
           <Link to="/account" className='hoverGold'>
@@ -37,7 +39,9 @@ function Navbar() {
           <Link to="/cart" className='hoverGold'>
             <FontAwesomeIcon icon={faShoppingCart} size="xl" />
           </Link>
-          <button onClick={handleLogout} className="logout-button">Logout</button>
+          <button onClick={handleLogout} className="logout-button">
+          <img src="../src/assets/images/7.png" alt="logout" />
+          </button>
         </div>
       </div>
     </div>

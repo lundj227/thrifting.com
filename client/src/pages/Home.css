@@ -1,51 +1,91 @@
+/* Center the content vertically and horizontally */
 .center-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
   overflow: hidden !important;
+  /* Set the background video */
+  background: url('../assets/video.mp4') no-repeat center center fixed;
+  background-size: cover;
+  position: relative; /* Add position relative to contain absolute elements */
 }
 
-.home-container {
-  text-align: center;
-  font-size: 24px;
-  padding: 20px;
-  background-color: #f0f0f0;  
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  
+/* Style the video to cover the entire container */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Send the video to the background */
 }
 
-.home-title {
-  font-size: 3em;
-  margin-bottom: 20px;
+/* Style the title image to appear in the center */
+.home-title-image {
+  position: relative; /* Change to relative, not absolute */
+  z-index: 1; /* Bring the image to the foreground */
+  /* Add any additional styling for the image as needed */
+  max-width: 60%; /* Adjust the image width */
+  height: auto;
+  margin-top: 20px; /* Add margin-top to separate title from buttons */
 }
-
 .home-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;  
+  flex-direction: column;
+  text-align: center;
+}
+.home-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in; /* Ease-out for hover effect */
 }
 
+.home-button:active {
+  transform: translateY(0); /* Bring the button back to its original position when clicked */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Restore the shadow */
+  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in; /* Ease-out for active effect */
+}
+
+/* Add slower hover effect for the image with ease-out */
+.home-button-image:hover {
+  transform: scale(1.1); /* Increase the image size on hover */
+  transition: transform 0.5s ease-out; /* Slower transition with ease-out */
+}
+
+
+/* Remove the button-wrapper styles */
 .home-button {
   text-decoration: none;
   background-color: black;
   color: #f0f0f0 !important;
-  padding: 15px 30px;
+  padding: 10px 20px; /* Reduced padding for smaller buttons */
+  font-size: 16px; /* Reduced font size for smaller buttons */
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  width: 30%; /* Adjust the width as needed */
+  margin-right: -5px; /* More negative margin to bring the buttons even closer */
 }
-
+.home-button-image {
+ padding: 40px;
+}
+/* Add hover and active styles to indicate clickability */
 .home-button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
+.home-button:active {
+  transform: translateY(0); /* Bring the button back to its original position when clicked */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Restore the shadow */
+}
+
 @media screen and (max-width: 600px) {
-  .home-title {
-    font-size: 2em; /* Adjust font size for smaller screens */
+  .home-title-image {
+    max-width: 80%; /* Adjust the image width for smaller screens */
   }
 
   .home-buttons {
@@ -55,5 +95,6 @@
 
   .home-button {
     width: 60%; /* Make buttons take up full width */
+    margin-right: 0; /* Remove negative margin for smaller screens */
   }
 }

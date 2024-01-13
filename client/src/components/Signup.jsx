@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../utils/mutations';  
 import './Signup.css';
+import SignUpImage from '../assets/images/4.png';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -46,9 +47,12 @@ function SignUpForm() {
 
   return (
     <div className="signup-container">
-      <h1>Create Account</h1>
+       <div className="sign-up-account">
+        <img src={SignUpImage} alt="sign-up" />
+        </div>
+     
       <form onSubmit={handleSubmit} className="signup-form">
-        <label htmlFor="firstName">First Name</label>  
+        <label htmlFor="firstName">First Name:</label>  
         <input
           type="text"
           name="firstName"  
@@ -58,7 +62,7 @@ function SignUpForm() {
           onChange={handleChange}
           className="signup-input"
         />
-        <label htmlFor="lastName">Last Name</label>  
+        <label htmlFor="lastName">Last Name:</label>  
         <input
           type="text"
           name="lastName"  
@@ -68,7 +72,7 @@ function SignUpForm() {
           onChange={handleChange}
           className="signup-input"
         />
-        <label htmlFor="username">Username</label>  
+        <label htmlFor="username">Username:</label>  
         <input
           type="text"
           name="username"  
@@ -78,7 +82,7 @@ function SignUpForm() {
           onChange={handleChange}
           className="signup-input"
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email:</label>
         <input
           type="email"
           name="email"
@@ -88,7 +92,7 @@ function SignUpForm() {
           onChange={handleChange}
           className="signup-input"
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           name="password"
@@ -100,7 +104,7 @@ function SignUpForm() {
         />
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="signup-button" disabled={loading}>
-          Sign Up
+        <img src="./src/assets/images/6.png" alt="sign-up" />
         </button>
       </form>
       <Link to="/login" className="login-link">Login Instead</Link>

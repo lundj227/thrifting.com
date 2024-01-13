@@ -9,9 +9,10 @@ import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
 import Footer from './components/footer';
 import Cart from './pages/Cart';
-import { CartProvider } from './contexts/CartContext';  
-import { createHttpLink } from '@apollo/client/link/http'; // Import createHttpLink
+import { createHttpLink } from '@apollo/client/link/http';
 import { setContext } from '@apollo/client/link/context';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,12 +32,12 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
- 
+
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <CartProvider> 
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <Router>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -46,10 +47,10 @@ function App() {
             <Route path="/product/:productId" element={<ProductInfo />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
-        </CartProvider>
-        <Footer/>
-      </Router>
-    </ApolloProvider>
+          <Footer />
+        </Router>
+      </ApolloProvider>
+    </Provider>
   );
 }
 

@@ -4,12 +4,24 @@ const Favorite = require('../models/Favorite');
 const { signToken } = require('../utils/auth');  
 const { AuthenticationError } = require('apollo-server-errors');
 
-
 async function calculateTotalAmount(cartItems) {
+  if (!cartItems || cartItems.length === 0) {
+    return 0; // Handle empty or null cartItems
+  }
+
+  const productIds = cartItems.map((item) => item && item.product).filter(Boolean);
+  const products = await Product.find({ _id: { $in: productIds } });
+
+  if (!products || products.length === 0) {
+    return 0; // Handle case where no products are found
+  }
+
   let totalAmount = 0;
 
   for (const cartItem of cartItems) {
-    const product = await Product.findById(cartItem.product);
+    if (!cartItem || !cartItem.product) continue; // Skip if cartItem or cartItem.product is null
+
+    const product = products.find((p) => p && p._id && cartItem.product && p._id.toString() === cartItem.product.toString());
     if (product) {
       totalAmount += product.price * cartItem.quantity;
     }
@@ -103,45 +115,39 @@ const resolvers = {
     },
 
     addToCart: async (_, { productId, quantity }, context) => {
-      // Check if the user is authenticated based on the context
       if (!context.user) {
         throw new Error('Not authenticated.');
       }
     
       try {
-        // Find the user by their ID
         const user = await User.findById(context.user._id);
+    
         if (!user) {
           throw new Error('User not found.');
         }
     
-        // Ensure that user.cart is defined and has items
-        if (!user.cart) {
-          user.cart = { items: [] };
+        // Validate productId and quantity
+        if (!productId || quantity <= 0) {
+          throw new Error('Invalid product ID or quantity.');
         }
     
-        // Check if the product is already in the user's cart
-        const existingCartItemIndex = user.cart.items.findIndex(
-          (item) => item.product && item.product.toString() === productId
-        );
+        const cartItem = user.cart.find((item) => item && item.product.toString() === productId);
     
-        if (existingCartItemIndex > -1) {
-          // If the product already exists in the cart, update the quantity
-          user.cart.items[existingCartItemIndex].quantity += quantity;
+        if (cartItem) {
+          cartItem.quantity += quantity;
         } else {
-          // If the product is not in the cart, add it to the cart
-          user.cart.items.push({ product: productId, quantity });
+          user.cart.push({ product: productId, quantity });
         }
     
-        // Save the user with the updated cart
+        user.markModified('cart');
         await user.save();
     
-        // Calculate the total amount of the cart
-        const totalAmount = await calculateTotalAmount(user.cart.items);
+        const populatedUser = await User.findById(user._id).populate('cart.product');
     
-        // Return the updated cart
+        const totalAmount = await calculateTotalAmount(populatedUser.cart);
+    
         return {
-          items: user.cart.items,
+          items: populatedUser.cart,
           totalAmount,
         };
       } catch (error) {
@@ -149,6 +155,8 @@ const resolvers = {
         throw new Error('An error occurred while adding to the cart.');
       }
     },
+    
+    
     
 
   },

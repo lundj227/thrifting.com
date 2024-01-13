@@ -1,4 +1,8 @@
 .navbar-container {
+    background-image: url('../assets/images/background.png'); /* Update with the correct path */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,11 +18,13 @@
     transition-property: background-color;
     transition-duration: .21s;
     transition-timing-function: linear;
+    border: 1px solid black;
 }
-
-.navbar-container:hover{
-    background-color: #dfd9d3;
-}
+.logo img {
+    max-width: 25%; /* Adjust this value as needed to make the logo smaller */
+    height: auto; /* This will maintain the aspect ratio of the image */
+    padding-top: 15px;
+  }
 
 .navbar {
     display: flex;
@@ -59,24 +65,32 @@ a{
     color: black !important;
 }
 
-.logout-button{
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #000;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Times New Roman', Times, serif
-}
-
-.logout-button:hover {
-    background-color: #ffd700;
-    color: #000;
-}
+.logout-button {
+    border: none; /* Remove border if not needed */
+    padding: 0; /* Adjust padding as needed */
+    background: none; /* Remove default background */
+    cursor: pointer; /* To indicate it's clickable */
+  }
+  
+  .logout-button img {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* To remove any extra spacing inside the button */
+  }
+  
+   
+  
+  .logout-button:active {
+    transform: translateY(0); /* Return the button to its original position when clicked */
+  
+    transition: transform 0.5s ease-in, box-shadow 0.5s ease-in; /* Smooth transition for active state */
+  }
+  
+  /* If you have an image inside your button and want a different hover effect for it */
+  .logout-button img:hover {
+    transform: scale(1.1); /* Enlarge the image slightly on hover */
+    transition: transform 0.5s ease-out; /* Slower transition with ease-out */
+  }
 
 path:hover {
     fill: #ffd700;

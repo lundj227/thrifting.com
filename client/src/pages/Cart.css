@@ -1,52 +1,96 @@
 /* Cart.css */
 
-.cart {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  span {
-    flex: 1;
-  }
-  
-  button {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #d32f2f;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+/* Style for the cart container */
+.cart-container {
+  max-width: 800px;
+  margin: 100px auto 0; /* Updated margin-top to 100px */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added a subtle box shadow */
+}
+
+/* Style for the cart list */
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for the cart item */
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.cart-item-image {
+  max-width: 100px;
+  height: auto;
+  margin-right: 20px;
+  object-fit: cover;
+  border-radius: 5px; /* Add rounded corners to the image */
+}
+
+.cart-item-details {
+  flex: 1; /* Expand to fill available space */
+}
+
+.cart-item-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.cart-item-price {
+  margin: 0;
+  color: #555;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-quantity span {
+  margin-right: 5px;
+}
+
+.cart-item input[type="number"] {
+  width: 40px;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.remove-button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
+}
+
+/* Style for the clear cart button */
+.clear-cart-button {
+  background-color: #008000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.clear-cart-button:hover {
+  background-color: #006600;
+}
