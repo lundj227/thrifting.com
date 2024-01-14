@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 import './Login.css';
-import loginImage from '../../public/images/3.png';
+import loginImage from '../assets/images/3.png';
+import loginButtonImage from '../assets/images/5.png';
 
 function Login() {
   const [showLoginForm, setShowLoginForm] = useState(false); 
@@ -76,7 +77,8 @@ function Login() {
           </div>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" className="login-button">
-          <img src="./src/assets/images/5.png" alt="Login" />
+          <img src={loginButtonImage} alt="Login" />
+
           </button>
         </form>
       </div>

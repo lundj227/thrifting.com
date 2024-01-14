@@ -3,7 +3,8 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../utils/mutations';  
 import './SignUp.css';
-import SignUpImage from '../../public/images/4.png';
+import SignUp from '../assets/images/4.png';
+import SignUpImage from '../assets/images/6.png';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -48,7 +49,7 @@ function SignUpForm() {
   return (
     <div className="signup-container">
        <div className="sign-up-account">
-        <img src={SignUpImage} alt="sign-up" />
+        <img src={SignUp} alt="sign-up" />
         </div>
      
       <form onSubmit={handleSubmit} className="signup-form">
@@ -104,7 +105,7 @@ function SignUpForm() {
         />
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="signup-button" disabled={loading}>
-        <img src="./src/assets/images/6.png" alt="sign-up" />
+        <img src={SignUpImage} alt="sign-up" />
         </button>
       </form>
       <Link to="/login" className="login-link">Login Instead</Link>
