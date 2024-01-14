@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const { ObjectId } = mongoose.Types;
+require('dotenv').config();
 
-mongoose.connect('mongodb://127.0.0.1:27017/thrifting', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/thrifting',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
 
 const validCategoryObjectId = new ObjectId();
 
