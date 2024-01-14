@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../utils/mutations';  
 import './SignUp.css';
-import SignUpImage from '../assets/images/4.png';
+import SignUpImage from '../../public/images/4.png';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({

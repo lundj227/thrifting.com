@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 import './Login.css';
-import loginImage from '../assets/images/3.png';
+import loginImage from '../../public/images/3.png';
 
 function Login() {
   const [showLoginForm, setShowLoginForm] = useState(false); 
