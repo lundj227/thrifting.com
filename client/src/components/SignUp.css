@@ -15,6 +15,7 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .sign-up-account img {
   width: 50%; /* Adjust as needed */

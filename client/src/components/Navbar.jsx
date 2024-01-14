@@ -8,6 +8,8 @@ import Cart from '../pages/Cart';
 
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const location = useLocation();
   const navigate = useNavigate();  
 
@@ -25,27 +27,33 @@ function Navbar() {
     <div className="navbar-container">
       <div className="navbar">
         <div className="logo">
-        <Link to="/browse">
-          <img src="../src/assets/images/title.png" alt="Thrifting Logo" />
-        </Link>
+          <Link to="/browse">
+            <img src="../src/assets/images/title.png" alt="Thrifting Logo" />
+          </Link>
         </div>
-        <div className="icons">
-          <Link to="/account" className='hoverGold'>
-            <FontAwesomeIcon icon={faUser} size="xl" />
+        <div className="hamburger-icon" onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div className={`icons ${isMenuOpen ? 'open' : ''}`}>
+          <Link to="/account" className='nav-item'>
+            <FontAwesomeIcon icon={faUser} size="xl" /><span>Account</span>
           </Link>
-          <Link to="/favorites" className='hoverGold'>
-            <FontAwesomeIcon icon={faHeart} size="xl" />
+          <Link to="/favorites" className='nav-item'>
+            <FontAwesomeIcon icon={faHeart} size="xl" /><span>Favorites</span>
           </Link>
-          <Link to="/cart" className='hoverGold'>
-            <FontAwesomeIcon icon={faShoppingCart} size="xl" />
+          <Link to="/cart" className='nav-item'>
+            <FontAwesomeIcon icon={faShoppingCart} size="xl" /><span>Cart</span>
           </Link>
-          <button onClick={handleLogout} className="logout-button">
-          <img src="../src/assets/images/7.png" alt="logout" />
+          <button onClick={handleLogout} className="nav-item logout-button">
+            <FontAwesomeIcon icon={faSignOutAlt} size="xl" /><span>Logout</span>
           </button>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default Navbar;

@@ -35,6 +35,7 @@
 .home-buttons {
   flex-direction: column;
   text-align: center;
+  transition: transform 5s ease-out, box-shadow 5s ease-out;
 }
 .home-button:hover {
   transform: translateY(-3px);
@@ -72,16 +73,7 @@
 .home-button-image {
  padding: 40px;
 }
-/* Add hover and active styles to indicate clickability */
-.home-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-}
-
-.home-button:active {
-  transform: translateY(0); /* Bring the button back to its original position when clicked */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Restore the shadow */
-}
+ 
 
 @media screen and (max-width: 600px) {
   .home-title-image {

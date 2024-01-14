@@ -2,13 +2,9 @@
 
 /* Style for the cart container */
 .cart-container {
+  height: 100vh;
   max-width: 800px;
   margin: 100px auto 0; /* Updated margin-top to 100px */
-  padding: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added a subtle box shadow */
 }
 
 /* Style for the cart list */

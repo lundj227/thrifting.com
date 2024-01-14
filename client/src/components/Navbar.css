@@ -11,19 +11,27 @@
     display: flex;
     justify-content: center;  
     align-items: center;
-    height: 80px;
+    height: 85px;
     padding: 0 20px;
     z-index: 1000;
     margin: 0;
     transition-property: background-color;
     transition-duration: .21s;
     transition-timing-function: linear;
-    border: 1px solid black;
+    border: 2px solid black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .logo img {
-    max-width: 25%; /* Adjust this value as needed to make the logo smaller */
+    max-width: 25%; 
     height: auto; /* This will maintain the aspect ratio of the image */
     padding-top: 15px;
+  }
+
+
+ 
+.logo img:hover {
+    transform: scale(1.1); /* Enlarge the image slightly on hover */
+    transition: transform 0.5s ease-out; /* Slower transition with ease-out */
   }
 
 .navbar {
@@ -33,6 +41,7 @@
     width: 100%;
     margin: 0;
     padding: 50px;
+    position: relative;
 }
 
 .logo {
@@ -45,7 +54,7 @@
     font-size: 3em;
     margin-bottom: 20px;
     text-decoration: none !important;
-    color: black !important;
+    color: rgb(255, 255, 255) !important;
   }
 
   .icons {
@@ -58,11 +67,11 @@
 
 .icons a i {
     font-size: 2em; 
-    color: black; 
+    color: rgb(255, 255, 255); 
 }
 
 a{
-    color: black !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .logout-button {
@@ -76,7 +85,8 @@ a{
     width: 100px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     display: block; /* To remove any extra spacing inside the button */
-  }
+ 
+}
   
    
   
@@ -94,6 +104,22 @@ a{
 
 path:hover {
     fill: #ffd700;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255); /* Ensure text color is white */
+    text-decoration: none;
+}
+
+.nav-item span {
+    margin-left: 8px; /* Space between icon and text */
+}
+
+.icons a:hover, .nav-item:hover {
+    color: #ffd700; /* Change hover color as needed */
+    transition: color 0.3s ease;
 }
 
 @media screen and (max-width: 850px) {
@@ -118,3 +144,82 @@ path:hover {
         padding: 8px 16px; 
     }
 }
+
+@media screen and (max-width: 600px) {
+    .logo img {
+        max-width: 50%; /* Increase the max-width for smaller screens */
+        padding-top: 10px; /* Adjust padding if needed */
+    }
+}
+
+
+
+.hamburger-icon {
+    display: none; /* Initially hidden */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 25px; /* Height of the icon */
+    width: 35px; /* Width of the icon */
+  }
+  
+  .hamburger-icon div {
+    width: 100%; /* Full width of the icon */
+    height: 3px; /* Thickness of each line */
+    background-color: #ffffff; /* Color of the hamburger lines */
+    border: 1px solid black;
+  }
+
+  .hamburger-icon:hover {
+    transform: scale(1.1); /* Enlarge the image slightly on hover */
+    transition: transform 0.5s ease-out; /* Slower transition with ease-out */
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 700px) {
+    .hamburger-icon {
+      display: flex;
+      color: black;
+    }
+    
+    .icons {
+        display: none; /* Hide by default */
+        position: absolute; /* Position it below the navbar */
+        top: 100%; /* Position it right below the navbar */
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: #fff; /* Background color, change as needed */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds a shadow for better visibility */
+        z-index: 10; /* Ensure it's above other content */
+        color: black;
+      }
+      
+      .icons.open {
+        display: block; /* Display as a block to list items in a column */
+      }
+      
+      /* Styles for individual icon links */
+      .icons a {
+        display: block; /* Display links in block to stack them */
+        padding: 10px; /* Add padding for touch targets, adjust as needed */
+        color: black;/* Add other styles like text colors, hover effects, etc. */
+      }
+      
+      /* Media Queries for Mobile View */
+      @media screen and (max-width: 600px) {
+        .hamburger-icon {
+          display: flex;
+        }
+      
+        .icons {
+          display: none;
+          color: black;
+        }
+      
+        .icons.open {
+          display: block;
+        }
+      }
+  }
+  
+  

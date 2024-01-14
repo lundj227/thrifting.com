@@ -1,6 +1,7 @@
 #root {
     margin: 0; padding: 0; border: 0; box-sizing: border-box;
     min-height: 100vh;
+    
 }
 
 h1{
@@ -8,4 +9,3 @@ h1{
     margin-bottom: 10px !important;
   }
   
- 
