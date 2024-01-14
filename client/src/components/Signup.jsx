@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../utils/mutations';  
-import './Signup.css';
+import './SignUp.css';
 import SignUpImage from '../assets/images/4.png';
 
 function SignUpForm() {
