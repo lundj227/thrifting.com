@@ -9,7 +9,8 @@
         "seed": "node server/seeders/seed.js",
         "install": "cd server && npm i && cd ../client && npm i",
         "build": "cd client && npm run build",
-        "render-build": "npm install && npm run build"
+        "render-build": "npm install && npm run build && npm run seed"
+
     },
     "keywords": [],
     "author": "",
