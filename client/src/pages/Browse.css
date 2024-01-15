@@ -3,11 +3,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 h1{
   font-size:20px;
   margin-bottom: 40px;
   font-family: Arial, Helvetica, sans-serif;
+}
+.sales-ad{
+  margin-top:80px;
+}
+.sales-ad {
+  position: relative;
+}
+
+.sales-ad::before {
+  content: "Explore Our Thrift Collection!!!"; /* Text to move across the image */
+  position: absolute;
+  top: 40%; /* Adjust vertical position as needed */
+  left: 100%; /* Initial position (outside the image) */
+  white-space: nowrap; /* Prevent text from wrapping */
+  animation: moveText 20s linear infinite; /* Adjust duration as needed */
+  color: white;
+  font-size: 100px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+}
+
+@keyframes moveText {
+  0% {
+    left: 100%; /* Start position (outside the image) */
+  }
+  100% {
+    left: -100%; /* End position (outside the image) */
+  }
+}
+
+.newArrivals{
+margin-top: 20px;
+margin-bottom: 20px;
 }
 
 .favorite-button {
@@ -23,7 +56,7 @@ h1{
 
 .browse-page {  
   text-align: center; 
-  margin-top: 100px;
+  background-color: white;
   height: 100hv;
   font-family: Arial, Helvetica, sans-serif;
 }

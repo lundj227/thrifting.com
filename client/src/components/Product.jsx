@@ -10,12 +10,6 @@ const Product = ({ _id, name, image, price, isFavorited, onToggleFavorite }) => 
       </Link>
       <h2 className="product-name">{name}</h2>
       <p className="product-price">${price}</p>
-      <button
-        className={`favorite-button ${isFavorited ? 'favorited' : ''}`}
-        onClick={onToggleFavorite}
-      >
-        <i className={`fas fa-heart ${isFavorited ? 'favorited-icon' : ''}`}></i>
-      </button>
     </div>
   );
 };

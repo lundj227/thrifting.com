@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import { useQuery } from '@apollo/client';
 import Product from '../components/Product';
 import { GET_PRODUCTS } from '../utils/queries';  
 import Auth from '../utils/auth';  
 import '../pages/Browse.css';
+import newarrivals from '../assets/images/8.png';
+import salesAdImage from '../assets/images/thriftbanner.png';
+
 
 const BrowsePage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -33,14 +36,34 @@ const BrowsePage = () => {
 
   return (
     <div className="browse-page">
-      <div className='newArrivals'>
-        <h3>New Arrivals</h3>
+      {/* Navigation Bar */}
+      {/* Add your navigation component here */}
+      
+      {/* Sales Ad */}
+      <div className="sales-ad">
+        <img
+          src={salesAdImage} // Replace 'salesAdImage' with the path to your sales ad image
+          alt="Sales Ad"
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+        {/* Add any additional sales ad content here */}
       </div>
+
+      {/* New Arrivals */}
+      <div className='newArrivals'>
+        <img
+          src={newarrivals}
+          alt="new arrivals"
+          style={{ maxWidth: '20%', height: 'auto' }} // Add this style to make the image smaller
+        />
+      </div>
+      
+      {/* Product List */}
       <div className="product-list">
         {products.map((product) => (
           <Product
             key={product._id}
-            _id={product._id} // Pass _id prop explicitly
+            _id={product._id}  
             name={product.name}
             image={product.image}
             price={product.price}
