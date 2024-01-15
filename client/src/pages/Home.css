@@ -12,7 +12,6 @@
   position: relative; /* Add position relative to contain absolute elements */
 }
 
-/* Style the video to cover the entire container */
 .background-video {
   position: absolute;
   top: 0;
