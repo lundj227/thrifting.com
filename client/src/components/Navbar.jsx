@@ -7,8 +7,7 @@ import accountIcon from '../assets/images/accountblack.png';
 import cartIcon from '../assets/images/bagblack.png';
 
 function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,9 +30,9 @@ function Navbar() {
     };
   }, []);
 
-  if (shouldHideNavbar) {
-    return null;
-  }
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <div className="navbar-container">
@@ -43,12 +42,31 @@ function Navbar() {
             <img src={homeTitleImage} alt="Thrifting Logo" />
           </Link>
         </div>
-        <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+
+        {/* Hamburger Icon */}
+        <div className="hamburger-icon" onClick={toggleMobileMenu}>
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <div className={`icons ${isMenuOpen ? 'open' : ''}`}>
+
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <ul className={`mobile-links ${isMobileMenuOpen ? 'open' : ''}`}>
+            <li>
+              <Link to="/account">Account</Link>
+            </li>
+            <li>
+              <Link to="/cart">Cart</Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Desktop Icons */}
+        <div className={`icons ${isMobileMenuOpen ? 'hide' : ''}`}>
           <Link to="/account">
             <img src={accountIcon} alt="Account Icon" className="account-icon" />
           </Link>

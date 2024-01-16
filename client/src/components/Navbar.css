@@ -102,8 +102,7 @@ body, p, h1, h2, h3, ul, li {
   /* Add any other styles as needed */
 }
 
-
-/* Add this CSS to your Navbar.css file */
+/* Navbar.css */
 .hamburger-icon {
   display: none; /* Initially hide the hamburger icon */
   cursor: pointer;
@@ -129,3 +128,112 @@ body, p, h1, h2, h3, ul, li {
 .icons.open .hamburger-icon div:nth-child(3) {
   transform: rotate(45deg) translate(-5px, -6px);
 }
+
+.hamburger-icon {
+  display: none; /* Initially hide the hamburger icon */
+  cursor: pointer;
+  padding: 10px; /* Add padding for a larger clickable area */
+  border-radius: 5px; /* Optional: round the corners for a button-like feel */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  background-color: rgba(0, 0, 0, 0.1); /* Optional: subtle background color */
+}
+
+.hamburger-icon:hover, .hamburger-icon:focus {
+  background-color: rgba(0, 0, 0, 0.2); /* Darken on hover/focus for feedback */
+}
+
+.hamburger-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: #333; /* Color of the hamburger lines */
+  margin: 6px 0;
+  transition: 0.4s; /* Add a smooth transition effect */
+}
+
+/* Adjust styles for when the hamburger menu is open */
+.hamburger-icon.open div:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-icon.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open div:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.mobile-menu {
+  margin-top: 50px;
+  display: none;
+  position: absolute;
+  top: 85px; /* Adjust this value as needed to lower the menu */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+  z-index: 1001; /* Ensure it's above other content */
+}
+
+.mobile-menu.open {
+  display: block; /* Show the mobile menu when open */
+}
+
+/* Style the list within the mobile menu */
+.mobile-menu ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+  text-align: center; /* Center align the text */
+}
+
+/* Style each list item */
+.mobile-menu ul li {
+  padding: 15px 0; /* Add padding for spacing */
+  border-bottom: 1px solid #ddd; /* Optional: add a separator */
+}
+
+/* Style the links and buttons within the list items */
+.mobile-menu ul li a,
+.mobile-menu ul li button {
+  display: block; /* Make links/buttons fill the li */
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Set text color */
+  font-weight: bold; /* Make the text bold */
+  font-size: 16px; /* Adjust font size */
+  padding: 15px 0; /* Add padding for spacing */
+  width: 100%; /* Ensure it fills the entire width */
+  text-align: center; /* Center the text */
+}
+
+/* Hover effect for links and buttons */
+.mobile-menu ul li a:hover,
+.mobile-menu ul li button:hover {
+  color: #000; /* Darken text on hover */
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger-icon {
+    display: block; /* Show the hamburger icon on smaller screens */
+  }
+
+  .icons {
+    display: none; /* Hide the desktop icons on smaller screens */
+  }
+
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 85px; /* Adjust based on your navbar's height */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    /* Additional styling for mobile menu */
+  }
+
+  .mobile-menu.open {
+    display: block; /* Show the mobile menu when open */
+    /* Additional styling for open state */
+  }
+}
+
