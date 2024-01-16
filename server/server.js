@@ -8,7 +8,7 @@ const cors = require('cors');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
-const helmet = require('helmet');
+ 
 
 require("dotenv").config();
 
@@ -28,15 +28,7 @@ const server = new ApolloServer({
 // Middleware for parsing JSON and urlencoded data
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'none'"],
-      fontSrc: ["'self'", "data:"],
-      imgSrc: ["'self'", "data:"],
-    },
-  })
-);
+ 
  
 // Serve static files in production mode
 if (process.env.NODE_ENV === 'production') {
