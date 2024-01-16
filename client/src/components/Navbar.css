@@ -101,3 +101,31 @@ body, p, h1, h2, h3, ul, li {
   height: 40px; /* Adjust the height accordingly */
   /* Add any other styles as needed */
 }
+
+
+/* Add this CSS to your Navbar.css file */
+.hamburger-icon {
+  display: none; /* Initially hide the hamburger icon */
+  cursor: pointer;
+}
+
+.hamburger-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: #333; /* Color of the hamburger lines */
+  margin: 6px 0;
+  transition: 0.4s; /* Add a smooth transition effect */
+}
+
+/* Style for the open (active) hamburger menu */
+.icons.open .hamburger-icon div:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.icons.open .hamburger-icon div:nth-child(2) {
+  opacity: 0;
+}
+
+.icons.open .hamburger-icon div:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}

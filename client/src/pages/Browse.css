@@ -14,19 +14,7 @@ h1{
   position: relative;
 }
 
-.sales-ad::before {
-  content: "Explore Our Thrift Collection!!!"; /* Text to move across the image */
-  position: absolute;
-  top: 40%; /* Adjust vertical position as needed */
-  left: 100%; /* Initial position (outside the image) */
-  white-space: nowrap; /* Prevent text from wrapping */
-  animation: moveText 20s linear infinite; /* Adjust duration as needed */
-  color: white;
-  font-size: 100px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
-}
  
-
 .newArrivals{
 margin: 100px;
 }

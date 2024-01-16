@@ -3,9 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import Auth from '../utils/auth';
 import homeTitleImage from '../assets/images/title.png';
-import accountIcon from '../assets/images/accountblack.png'; // Import the account icon image
-import cartIcon from '../assets/images/bagblack.png'; // Import the cart icon image
-
+import accountIcon from '../assets/images/accountblack.png';
+import cartIcon from '../assets/images/bagblack.png';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,18 +21,18 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-       
+      // Handle scroll effects here if needed
     };
-  
+
     window.addEventListener('scroll', handleScroll);
-  
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   if (shouldHideNavbar) {
-    return null; // Return null to hide the Navbar on specified paths
+    return null;
   }
 
   return (
@@ -44,27 +43,21 @@ function Navbar() {
             <img src={homeTitleImage} alt="Thrifting Logo" />
           </Link>
         </div>
-        <div className="hamburger-icon" onClick={toggleMenu}>
-          {/* You can use CSS to create hamburger menu icons */}
+        <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
           <div></div>
           <div></div>
           <div></div>
         </div>
         <div className={`icons ${isMenuOpen ? 'open' : ''}`}>
-
-   <Link to="/account">
-            <img src={accountIcon} alt="Account Icon" className="account-icon" /> {/* Use the imported account icon */}
+          <Link to="/account">
+            <img src={accountIcon} alt="Account Icon" className="account-icon" />
           </Link>
- 
-
           <Link to="/cart">
-            <img src={cartIcon} alt="Cart Icon" className="bag-icon" /> {/* Use the imported cart icon */}
+            <img src={cartIcon} alt="Cart Icon" className="bag-icon" />
           </Link>
-
-            <button onClick={handleLogout} className="nav-button logout-button">
-          <span>Logout</span>
-        </button>
-
+          <button onClick={handleLogout} className="nav-button logout-button">
+            <span>Logout</span>
+          </button>
         </div>
       </div>
     </div>
