@@ -1,10 +1,6 @@
 /* Signup.css */
 
 .signup-container {
-  background-image: url('../assets/images/background.png'); /* Update with the correct path */
-  background-size: cover; /* Cover the entire area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +9,7 @@
   text-align: center;
   background-color: #f0f0f0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: Arial, Helvetica, sans-serif;
 }
 .sign-up-account img {
@@ -38,7 +34,6 @@
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #000000;
-  border-radius: 10px;
 }
 
 .signup-input:focus {
@@ -48,11 +43,15 @@
 }
 
 .signup-button {
-  border: none; /* Remove border if not needed */
-  padding: 0; /* Adjust padding as needed */
-  background: none; /* Remove default background */
-  cursor: pointer; 
-}
+ margin-top: 20px;
+    /* Add your desired styles here */
+    background-color: #ffffff00; /* Example background color */
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: #000000; /* Example text color */
+    padding: 10px 20px !important; /* Adjust padding as needed */
+    cursor: pointer; /* Add cursor style on hover */   
+  }
+
 
 .signup-button img {
   width: 100px; /* Adjust width as needed */
@@ -76,5 +75,5 @@
 
 .login-link{
   margin: 10px;
-  color: white !important;
+  color: rgb(0, 0, 0);
 }

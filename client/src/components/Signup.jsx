@@ -49,7 +49,7 @@ function SignUpForm() {
   return (
     <div className="signup-container">
        <div className="sign-up-account">
-        <img src={SignUp} alt="sign-up" />
+       Sign-Up
         </div>
      
       <form onSubmit={handleSubmit} className="signup-form">
@@ -105,7 +105,9 @@ function SignUpForm() {
         />
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="signup-button" disabled={loading}>
-        <img src={SignUpImage} alt="sign-up" />
+        <div class="create-account">
+              Login
+        </div>
         </button>
       </form>
       <Link to="/login" className="login-link">Login Instead</Link>

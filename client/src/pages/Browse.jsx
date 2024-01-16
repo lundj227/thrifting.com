@@ -6,7 +6,9 @@ import { GET_PRODUCTS } from '../utils/queries';
 import Auth from '../utils/auth';  
 import '../pages/Browse.css';
 import newarrivals from '../assets/images/8.png';
-import salesAdImage from '../assets/images/thriftbanner.png';
+import salesAdImage from '../assets/images/thrift.jpg';
+import additionalImage from '../assets/images/ad.png'; // Import the additional image
+
 
 
 const BrowsePage = () => {
@@ -39,14 +41,16 @@ const BrowsePage = () => {
       {/* Navigation Bar */}
       {/* Add your navigation component here */}
       
-      {/* Sales Ad */}
-      <div className="sales-ad">
+     {/* Sales Ad */}
+     <div className="sales-ad">
         <img
           src={salesAdImage} // Replace 'salesAdImage' with the path to your sales ad image
           alt="Sales Ad"
           style={{ maxWidth: '100%', height: 'auto' }}
         />
         {/* Add any additional sales ad content here */}
+        
+        
       </div>
 
       {/* New Arrivals */}
@@ -54,7 +58,6 @@ const BrowsePage = () => {
         <img
           src={newarrivals}
           alt="new arrivals"
-          style={{ maxWidth: '20%', height: 'auto' }} // Add this style to make the image smaller
         />
       </div>
       

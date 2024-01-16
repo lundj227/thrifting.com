@@ -3,6 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import Auth from '../utils/auth';
 import homeTitleImage from '../assets/images/title.png';
+import accountIcon from '../assets/images/accountblack.png'; // Import the account icon image
+import cartIcon from '../assets/images/bagblack.png'; // Import the cart icon image
+
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,15 +51,20 @@ function Navbar() {
           <div></div>
         </div>
         <div className={`icons ${isMenuOpen ? 'open' : ''}`}>
-          <button className="nav-button">
-            <Link to="/account">Account</Link>
-          </button>
-          <button className="nav-button">
-            <Link to="/cart">Cart</Link>
-          </button>
-          <button onClick={handleLogout} className="nav-button">
-            <span>Logout</span>
-          </button>
+
+   <Link to="/account">
+            <img src={accountIcon} alt="Account Icon" className="account-icon" /> {/* Use the imported account icon */}
+          </Link>
+ 
+
+          <Link to="/cart">
+            <img src={cartIcon} alt="Cart Icon" className="bag-icon" /> {/* Use the imported cart icon */}
+          </Link>
+
+            <button onClick={handleLogout} className="nav-button logout-button">
+          <span>Logout</span>
+        </button>
+
         </div>
       </div>
     </div>

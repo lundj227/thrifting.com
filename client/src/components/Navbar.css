@@ -5,12 +5,11 @@ body, p, h1, h2, h3, ul, li {
 }
 
 .navbar-container {
-  background-color: #ffffff00;
+  background-color: rgba(255, 255, 255, 0.894);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 85px;
-   
   font-family: Arial, Helvetica, sans-serif;
   position: fixed; /* Set it to fixed */
   top: 0; /* Stick it to the top */
@@ -18,25 +17,22 @@ body, p, h1, h2, h3, ul, li {
   width: 100%;
   z-index: 1000;
   transition: background-color 0.21s linear;
-   background-image: url('../assets/images/background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center all content */
   align-items: center;
   width: 100%;
   margin: 0;
   padding: 50px;
-  position: relative; /* Add 'position: relative;' to center the navbar content */
+  position: relative;
 }
 
 /* Apply styles to the .logo */
 .logo {
   text-align: left; /* Align the logo to the left */
   flex-grow: 1; /* Allow the logo to take up available space */
+  margin-bottom: 10px;
 }
 
 /* Apply styles to the .logo img */
@@ -73,12 +69,7 @@ body, p, h1, h2, h3, ul, li {
 }
 
 .nav-button {
-  background-color: #ffd700;
-  color: #ffffff;
-  border: 1px solid black;
-  padding: 10px 20px;
-  margin-right: 10px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -87,13 +78,26 @@ body, p, h1, h2, h3, ul, li {
   align-items: center;
 }
 
-/* Style for the navbar buttons on hover */
-.nav-button:hover {
-  background-color: #000;
-  color: #ffd700;
+ 
+
+.logout-button {
+  /* Add your desired styles here */
+  background-color: #ffffff00; /* Example background color */
+  border: 1px solid rgb(0, 0, 0);
+  color: #000000; /* Example text color */
+  padding: 8px 16px; /* Adjust padding as needed */
+  cursor: pointer; /* Add cursor style on hover */
+  /* Add any other styles as per your design */
 }
 
-/* Remove underlines from the links within .nav-button */
-.nav-button a {
-  text-decoration: none;
+/* CSS for the small icons */
+.bag-icon {
+  width: 30px; /* Adjust the width to make the icons smaller */
+  height: 30px; /* Adjust the height accordingly */
+  /* Add any other styles as needed */
+}
+.account-icon {
+  width: 40px; /* Adjust the width to make the icons smaller */
+  height: 40px; /* Adjust the height accordingly */
+  /* Add any other styles as needed */
 }

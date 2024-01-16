@@ -9,30 +9,15 @@ import signUpButtonImage from '../assets/images/4.png'; // Replace with the actu
 function HomePage() {
   return (
     <div className="home-container center-content">
-      <video autoPlay loop muted playsInline className="background-video">
-        <source src={video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
       <img src={homeTitleImage} alt="Home Title" className="home-title-image" />
       <div className="home-buttons">
 
-  <Link to="/login">
-    <img
-      src={loginButtonImage}
-      alt="Login"
-      className="home-button-image"
-      style={{ width: '15%' }} // Adjust the percentages as needed
-    />
-  </Link>
- 
-  <Link to="/signup">
-    <img
-      src={signUpButtonImage}
-      alt="Sign Up"
-      className="home-button-image"
-      style={{ width: '20%' }} // Adjust the percentages as needed
-    />
-  </Link>
+      <Link to="/login">
+        <button className="login-button" onClick={() => navigate('/login')}>
+          Login
+        </button>
+        </Link>
+  
       </div>
     </div>
   );
