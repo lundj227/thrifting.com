@@ -8,6 +8,7 @@ const cors = require('cors');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
+const helmet = require('helmet');
  
 
 require("dotenv").config();
@@ -15,7 +16,13 @@ require("dotenv").config();
 // Server configuration
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 app.use(cors());
+// Middleware for parsing JSON and urlencoded data
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(helmet());
+
 
 // Apollo Server setup
 const server = new ApolloServer({
@@ -25,9 +32,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-// Middleware for parsing JSON and urlencoded data
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+
  
  
 // Serve static files in production mode
