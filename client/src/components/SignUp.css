@@ -10,6 +10,7 @@
   background-color: #f0f0f0;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 
@@ -24,6 +25,7 @@
   max-width: 400px;
 }
 
+
 .signup-input {
   width: 100%;
   padding: 10px;
@@ -36,6 +38,7 @@
 .signup-input:hover {
   border-color: #ffd700; /* Change border color to gold on hover */
   color: black; /* Change text color to black on hover */
+
 }
 
 .signup-input:focus {
