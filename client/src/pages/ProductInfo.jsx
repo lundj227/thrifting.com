@@ -62,14 +62,13 @@ function ProductInfo() {
       <div>
         <p>Quantity: {quantity}</p>
       </div>
-      <button onClick={handleAddToCart} disabled={addToCartLoading}>
-        {addToCartLoading ? 'Adding to Cart...' : 'Add to Cart'}
-      </button>
-      {addToCartSuccess && (
-        <div className="success-message">
-          Item added to cart!
-        </div>
-      )}
+      <button 
+  onClick={handleAddToCart} 
+  disabled={addToCartLoading || addToCartSuccess} 
+  className={addToCartSuccess ? "button-added" : ""}
+>
+  {addToCartLoading ? 'Adding to Cart...' : (addToCartSuccess ? 'Added to Cart' : 'Add to Cart')}
+</button>
     </div>
   );
 }

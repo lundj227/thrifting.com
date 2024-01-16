@@ -19,15 +19,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Remove this code
-      // const navbarContainer = document.querySelector('.navbar-container');
-      // if (navbarContainer) {
-      //   if (window.scrollY > 100) {
-      //     navbarContainer.classList.add('sticky-navbar');
-      //   } else {
-      //     navbarContainer.classList.remove('sticky-navbar');
-      //   }
-      // }
+       
     };
   
     window.addEventListener('scroll', handleScroll);

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_FROM_CART } from '../utils/mutations';
 import '../pages/Cart.css';
@@ -69,33 +70,43 @@ function Cart() {
       {isCartEmpty ? (
         <div className="cart-empty">Your cart is empty.</div>
       ) : (
-        <ul className="cart-list">
-{cartItems.map((item, index) => (
-  <li key={`${item.product._id}-${index}`} className="cart-item">
-              <img
-                className="cart-item-image"
-                src={item.product.image}
-                alt={item.product.name}
-              />
-              <div className="cart-item-details">
-                <h3 className="cart-item-title">{item.product.name}</h3>
-                <p className="cart-item-price">Price: ${item.product.price}</p>
-                <div className="cart-item-quantity">
-                  <span>Quantity:</span>
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(item.product._id, e.target.value)
-                    }
-                    aria-label={`Quantity for ${item.product.name}`}
-                  />
+        <>
+          <ul className="cart-list">
+            {cartItems.map((item, index) => (
+              <li key={`${item.product._id}-${index}`} className="cart-item">
+                <img
+                  className="cart-item-image"
+                  src={item.product.image}
+                  alt={item.product.name}
+                />
+                <div className="cart-item-details">
+                  <h3 className="cart-item-title">{item.product.name}</h3>
+                  <p className="cart-item-price">Price: ${item.product.price}</p>
+                  <div className="cart-item-quantity">
+                    <span>Quantity:</span>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleQuantityChange(item.product._id, e.target.value)
+                      }
+                      aria-label={`Quantity for ${item.product.name}`}
+                    />
+                  </div>
+                  <button 
+                    onClick={() => handleRemoveFromCart(item.product._id)} 
+                    className="remove-from-cart-button"
+                  >
+                    Remove
+                  </button>
                 </div>
-                <button onClick={() => handleRemoveFromCart(item.product._id)}>Remove</button>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+          <Link to="/checkout"> {/* Use React Router for navigation */}
+            <button className="checkout-button">Checkout</button>
+          </Link>
+        </>
       )}
     </div>
   );

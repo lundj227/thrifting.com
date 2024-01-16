@@ -8,6 +8,9 @@
     margin-top: 100px;
     font-family: Arial, Helvetica, sans-serif;
   }
+  .cart-container{
+    font-family: Arial, sans-serif;
+  }
   
   .product-details h2 {
     font-size: 2em;
@@ -44,6 +47,11 @@
     background-color: #ffd700;
     color: #000;
   }
+  .button-added {
+    background-color: #ffd700;
+    color: black;
+  }
+  
   
   .product-details button:disabled {
     background-color: #cccccc;
@@ -56,4 +64,18 @@
     justify-content: center;
   }
   
+  
+  .remove-from-cart-button {
+    background-color: #ffd700; /* Gold background */
+    color: white; /* Black text */
+    border: none; /* Remove default border */
+    padding: 8px 16px; /* Padding for a better appearance */
+    margin-top: 10px; /* Space above the button */
+    cursor: pointer; /* Cursor pointer to indicate it's clickable */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  .remove-from-cart-button:hover {
+    background-color: #e6c200; /* Slightly darker gold on hover */
+  }
   

@@ -9,6 +9,8 @@ import Browse from './pages/Browse';
 import ProductInfo from './pages/ProductInfo';
 import Footer from './components/footer';
 import Cart from './pages/Cart';
+import Account from './pages/Account';
+
 import { createHttpLink } from '@apollo/client/link/http';
 import { setContext } from '@apollo/client/link/context';
 import { Provider } from 'react-redux';
@@ -46,6 +48,7 @@ function App() {
             <Route path="/browse" element={<Browse />} />
             <Route path="/product/:productId" element={<ProductInfo />} />
             <Route path="/cart" element={<Cart client={client} />} />
+            <Route path="/account" element={<Account />} />  
           </Routes>
           <Footer />
         </Router>

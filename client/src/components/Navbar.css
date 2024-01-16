@@ -10,7 +10,7 @@ body, p, h1, h2, h3, ul, li {
   justify-content: center;
   align-items: center;
   height: 85px;
-  border: 2px solid black;
+   
   font-family: Arial, Helvetica, sans-serif;
   position: fixed; /* Set it to fixed */
   top: 0; /* Stick it to the top */
@@ -18,7 +18,7 @@ body, p, h1, h2, h3, ul, li {
   width: 100%;
   z-index: 1000;
   transition: background-color 0.21s linear;
-  background-image: url('../assets/images/background.png');
+   background-image: url('../assets/images/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
