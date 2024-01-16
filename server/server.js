@@ -33,7 +33,7 @@ app.use(
     directives: {
       defaultSrc: ["'none'"],
       fontSrc: ["'self'", "data:"],
-      
+      imgSrc: ["'self'", "data:"],
     },
   })
 );
