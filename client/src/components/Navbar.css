@@ -33,12 +33,12 @@ body, p, h1, h2, h3, ul, li {
   text-align: left; /* Align the logo to the left */
   flex-grow: 1; /* Allow the logo to take up available space */
   margin-bottom: 10px;
+ 
 }
 
 /* Apply styles to the .logo img */
 .logo img {
-  max-width: 20%;
-  min-width: 15% !important;
+  width: 200px;
   height: auto;
   padding-top: 15px;
 }
