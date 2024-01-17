@@ -94,11 +94,14 @@
 /* CSS for the Login button */
 .login-button {
   margin-top: 40px ;
-  /* Add your desired styles here */
-  background-color: #ffffff00; /* Example background color */
+  background-color: #ffffff00; 
   border: 1px solid rgb(0, 0, 0) !important;
-  color: #000000; /* Example text color */
-  padding: 10px 20px !important; /* Adjust padding as needed */
-  cursor: pointer; /* Add cursor style on hover */
-  /* Add any other styles as per your design */
+  color: #000000;
+  padding: 10px 20px !important; 
+  cursor: pointer; 
+  transition: color 0.3s;
+}
+
+.login-button:hover {
+  color: rgb(245, 211, 19); 
 }
