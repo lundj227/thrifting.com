@@ -33,10 +33,17 @@ function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Only show navbar if the user is logged in
-  if (!isLoggedIn) {
+  // Define an array of paths where the Navbar should be hidden
+  const hiddenPaths = ['/', '/login', '/signup'];
+
+  // Check if the current location pathname is in the hiddenPaths array
+  const shouldHideNavbar = hiddenPaths.includes(location.pathname);
+
+  // Only show navbar if the user is logged in and not on a hidden path
+  if (!isLoggedIn || shouldHideNavbar) {
     return null;
   }
+
   return (
     <div className="navbar-container">
       <div className="navbar">
