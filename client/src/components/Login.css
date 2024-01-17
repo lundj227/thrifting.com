@@ -25,6 +25,13 @@ h1{
   font-size: 3em;  
   margin-bottom: 10px !important;
 }
+
+#login-Text{
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
 .create-account{
   margin: 0px;
 }

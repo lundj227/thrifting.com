@@ -18,6 +18,12 @@
   
 }
 
+.sign-up-account{
+  margin-bottom: 25px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .signup-title {
   font-size: 3em;
   margin-bottom: 20px;
@@ -44,12 +50,16 @@
 
 .signup-button {
  margin-top: 20px;
-    /* Add your desired styles here */
-    background-color: #ffffff00; /* Example background color */
-    border: 1px solid rgb(0, 0, 0) !important;
-    color: #000000; /* Example text color */
-    padding: 10px 20px !important; /* Adjust padding as needed */
-    cursor: pointer; /* Add cursor style on hover */   
+ background-color: #ffffff00;
+  border: 1px solid rgb(0, 0, 0) !important;
+    color: #000000; 
+ padding: 10px 20px !important; 
+  cursor: pointer; 
+  transition: color 0.3s;   
+  }
+
+  .signup-button:hover{
+    color: rgb(245, 211, 19); 
   }
 
 
@@ -60,9 +70,8 @@
 }
 
 .signup-button:active {
-  transform: translateY(0); /* Return the button to its original position when clicked */
-
-  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in; /* Smooth transition for active state */
+  transform: translateY(0);
+  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in; 
 }
 
 /* If you have an image inside your button and want a different hover effect for it */
@@ -77,3 +86,8 @@
   margin: 10px;
   color: rgb(0, 0, 0);
 }
+
+
+
+ 
+

@@ -3,6 +3,12 @@ import { useSelector } from 'react-redux';
 
 const accountStyle = {
   marginTop: '100px', // Add a top margin of 100px
+  marginLeft: '850px',
+  marginBottom: '690px'
+};
+const h2 = {
+  marginLeft:'20px',
+  fontSize: '40px', // Add a top margin of 100px
 };
 
 function Account() {
@@ -12,7 +18,7 @@ function Account() {
 
   return (
     <div style={accountStyle}>
-      <h2>My Account</h2>
+      <h2 style={h2}>My Account</h2>
       {user ? (
         // Render user account information if the user is authenticated
         <div>
