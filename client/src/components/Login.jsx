@@ -46,7 +46,7 @@ function Login() {
   return (
     <div className={`login-container ${showLoginForm ? 'login-form-visible' : ''}`}>
       {!showLoginForm && (
-       <div class="create-account">
+        <div className="create-account">
        Login
    </div>
       )}
@@ -77,7 +77,7 @@ function Login() {
           </div>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" className="login-button">
-          <div class="create-account">
+          <div className="create-account">
               Login
                 </div>
 
