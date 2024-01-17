@@ -100,6 +100,13 @@
   padding: 10px 20px !important; 
   cursor: pointer; 
   transition: color 0.3s;
+  
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#home-Pg-Login{
+  width: 200px;
 }
 
 .login-button:hover {
