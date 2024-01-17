@@ -4,11 +4,7 @@
 Welcome to `Thrifting.com`, the ultimate destination for vintage fashion enthusiasts and thrift lovers! Our website is a treasure trove of unique, hand-picked vintage clothing and accessories, perfect for those who love to stand out with their style. We are dedicated to providing an eco-friendly shopping experience that not only helps you find rare fashion gems but also promotes sustainable practices.
 
 ## Screen Shots
-![Screenshot 2024-01-16 170222](https://github.com/lundj227/thrifting.com/assets/135195221/927985e2-e4fa-491e-b8c3-9743438d51a2)
-![Screenshot 2024-01-16 170233](https://github.com/lundj227/thrifting.com/assets/135195221/b926e503-815a-4088-9f8c-257f619a9ac0)
-![Screenshot 2024-01-16 170242](https://github.com/lundj227/thrifting.com/assets/135195221/b3611c0e-9c50-4069-ada5-d7e0aed2ae17)
-
-
+ 
 
 ## What We Offer
 - **Curated Vintage Collections:** Explore a wide range of vintage clothing and accessories from various eras. Each item is carefully selected for its quality, uniqueness, and style.

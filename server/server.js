@@ -21,7 +21,16 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(helmet());
-
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://apollo-server-landing-page.cdn.apollographql.com"],
+      imgSrc: ["'self'", "data:", "https://apollo-server-landing-page.cdn.apollographql.com"],
+      // Add other directives as needed
+    },
+  })
+);
 
 // Apollo Server setup
 const server = new ApolloServer({
