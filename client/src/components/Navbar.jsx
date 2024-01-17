@@ -11,11 +11,10 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const hiddenPaths = ['/', '/login', '/signup'];
-  const shouldHideNavbar = hiddenPaths.includes(location.pathname);
+  const isLoggedIn = Auth.loggedIn(); // Check if the user is logged in
 
   const handleLogout = () => {
-    Auth.logout(navigate);
+    Auth.logout(() => navigate('/')); // Navigate to home after logout
   };
 
   useEffect(() => {
@@ -34,6 +33,10 @@ function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Only show navbar if the user is logged in
+  if (!isLoggedIn) {
+    return null;
+  }
   return (
     <div className="navbar-container">
       <div className="navbar">

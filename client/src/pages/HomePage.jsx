@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'; // Create a separate CSS file for styling
 import video from '../assets/video.mp4';
 import homeTitleImage from '../assets/images/title.png';
-import loginButtonImage from '../assets/images/3.png'; // Replace with the actual path to your login button image
-import signUpButtonImage from '../assets/images/4.png'; // Replace with the actual path to your sign-up button image
-
+ 
 function HomePage() {
+  const navigate = useNavigate();
   return (
     <div className="home-container center-content">
       <video autoPlay loop muted playsInline className="background-video">
@@ -17,7 +16,7 @@ function HomePage() {
       <div className="home-buttons">
 
       <Link to="/login">
-        <button className="login-button" onClick={() => navigate('/login')}>
+      <button className="login-button" onClick={() => navigate('/login')}>
           Login
         </button>
         </Link>
