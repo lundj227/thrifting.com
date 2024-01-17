@@ -24,6 +24,12 @@ Welcome to `Thrifting.com`, the ultimate destination for vintage fashion enthusi
 ## Sustainability Commitment
 At Thrifting.com, we are committed to reducing the environmental impact of fashion. By choosing vintage, you are not only getting a piece of history but also contributing to a more sustainable future.
 
+## Screen Shots
+![Screenshot 2024-01-16 160252](https://github.com/Trevis-Williams/Trevis-book-search-engine/assets/135195221/34b53b52-f8c1-498a-a1ea-08f447159a43)
+![Screenshot 2024-01-16 160304](https://github.com/Trevis-Williams/Trevis-book-search-engine/assets/135195221/772d20c4-a44e-4f3c-a661-2b95e41842dd)
+![Screenshot 2024-01-16 160319](https://github.com/Trevis-Williams/Trevis-book-search-engine/assets/135195221/b333528f-d951-4d94-86d6-5788bc357d86)
+![Screenshot 2024-01-16 160332](https://github.com/Trevis-Williams/Trevis-book-search-engine/assets/135195221/6044ef6d-7b64-4ea7-aa16-b8e01a1e4470)
+
 ## Contact Us
 For support or inquiries, please contact us at:
 - Email: support@thrifting.com
