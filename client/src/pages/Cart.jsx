@@ -6,7 +6,6 @@ import '../pages/Cart.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCartItem, removeFromCart } from '../actions/cartActions'; // Import removeFromCart
 
-
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
